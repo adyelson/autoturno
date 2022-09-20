@@ -20,13 +20,17 @@ function exportData(){
 			let startDay = parseInt(condition.querySelector('.dayStart').value)-1;		
 			let endDay = parseInt(condition.querySelector('.dayEnd').value);
 			let signalToPut = condition.querySelector('.signal').value;
+			let hourStart = parseInt(condition.querySelector('.hourStart').value);		
+			let hourEnd = parseInt(condition.querySelector('.hourEnd').value);
+			let afterRest = parseInt(condition.querySelector('.restAfterSpecial').value);
+			
 			let daysToPut = [];
 			
 			for(let t=startDay;t<endDay;t++){
 				daysToPut.push(t);
 			}
 			
-			let conditionToAppend = {signal: signalToPut,days: daysToPut};
+			let conditionToAppend = {signal: signalToPut,days: daysToPut, afterRest:afterRest, hourEnd: hourEnd, hourStart: hourStart};
 
 			cantEnterDays.push(conditionToAppend);
 		});

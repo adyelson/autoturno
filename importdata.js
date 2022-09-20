@@ -29,7 +29,7 @@ function refreshData(json){
     
     let workersData = json.woker;
     let shiftsData = json.shift;
-    console.log(shiftsData);    
+       
     for (let i = 0; i<workersData.length;i++){
         
         
@@ -38,8 +38,6 @@ function refreshData(json){
         let levelR = workersData[i].level;
         let especialSituationR = workersData[i].especialSituation;
 
-
-        
         let workerInputLane = document.querySelector('.worker').cloneNode(true);
         workerInputLane.setAttribute('id',idR);	
         workerInputLane.querySelector('#id').value = idR;
@@ -70,11 +68,19 @@ function refreshData(json){
             let startDayR = parseInt(especialSituationR[c].days[0])+1;
             let endDayR = parseInt(especialSituationR[c].days.slice(-1))+1;
 
+            let endHourR = parseInt(especialSituationR[c].hourEnd);
+            let startHourR = parseInt(especialSituationR[c].hourStart);
+            let afterRestR = parseInt(especialSituationR[c].afterRest);
+         
             conditionInputLane.querySelector('.dayStart').value = startDayR;
             conditionInputLane.querySelector('.dayEnd').value = endDayR;
             conditionInputLane.querySelector('.signal').value = signalR;
+            conditionInputLane.querySelector('.hourEnd').value = endHourR;
+            conditionInputLane.querySelector('.hourStart').value = startHourR;
+            conditionInputLane.querySelector('.restAfterSpecial').value = afterRestR;
 
         	conditionInputLane.classList.add('include');
+
         	workerInputLane.querySelector('.especialSituation').append(conditionInputLane);
 
         	conditionInputLane.querySelector('.buttonRemoveCondition').addEventListener('click',()=>{
@@ -96,6 +102,8 @@ function refreshData(json){
         let reqLevelR = shiftsData[w].reqLevel;
         let minWorkersR = shiftsData[w].minWorkers;
         let chR = shiftsData[w].ch;
+        let restAfterR = shiftsData[w].restAfter;
+        let startHourR = shiftsData[w].startHour;
 
         let shiftInputLane = document.querySelector('.shift').cloneNode(true);
         shiftInputLane.setAttribute('id',indexLaneShift);	
@@ -104,6 +112,8 @@ function refreshData(json){
         shiftInputLane.querySelector('#level').value = reqLevelR;
         shiftInputLane.querySelector('#minWorkers').value = minWorkersR;
         shiftInputLane.querySelector('#workHours').value = chR;
+        shiftInputLane.querySelector('#startTime').value = startHourR;
+        shiftInputLane.querySelector('#restAfter').value = restAfterR;
 
 
         shiftInputLane.classList.add('include');	

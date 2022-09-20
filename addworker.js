@@ -1,13 +1,14 @@
-function add(i,u,w, reqLevel){
+function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	//days - daysOfWork or hour - workHours
 	let workArrayPos = [];	
 	let arrayObjects = Object.entries(workerList);
 	let listEntries = [];
-	
+
 	let extraWorkPlus = 0;
 	///// define level para vaga
 	for(let z=0;z<arrayObjects.length;z++){
 		let actualWork = arrayObjects[z][1];
+
 		if(actualWork.level==reqLevel){
 			let putSignal = '';
 			let cantEnter = false;
@@ -27,14 +28,37 @@ function add(i,u,w, reqLevel){
 			}else{
 				if(actualWork.shiftWork[i] == putSignal){
 				}else{
-					extraWorkPlus.daysOfWork++;
-					actualWork.shiftWork[i] = putSignal;				
+					let existThis = !!extraWorkPlus.daysOfWork[putSignal];
+					if(!existThis){
+						if(typeOfDay=='weekend'){
+							extraWorkPlus.daysOfWorkTotalWeekEnd++;
+						}else{
+							extraWorkPlus.daysOfWorkTotalNormal++;
+						}
+						extraWorkPlus.daysOfWork[putSignal]={days: 1}
+						extraWorkPlus.daysOfWorkTotal++;
+					}else{
+						if(typeOfDay=='weekend'){
+							extraWorkPlus.daysOfWorkTotalWeekEnd++;
+						}else{
+							extraWorkPlus.daysOfWorkTotalNormal++;
+						}
+
+						extraWorkPlus.daysOfWork[putSignal].days++;
+						extraWorkPlus.daysOfWorkTotal++;
+					}
+					actualWork.shiftWork[i] = putSignal;
 				}
 			}
 		}
 	}	
-	listEntries.forEach(element => {	
-		workArrayPos.push(element.daysOfWork*element.dayMultiplier);		
+	listEntries.forEach(element => {
+		if(typeOfDay=='weekend'){
+			workArrayPos.push(element.daysOfWorkTotalWeekEnd*element.dayMultiplier);		
+		}else{
+
+			workArrayPos.push(element.daysOfWorkTotalNormal*element.dayMultiplier);		
+		}
 	});
 	// se listaentries vazio, pular e não preencher vaga, deixar vazio devido impossibilida e reportar isso no relatorio
 
@@ -47,11 +71,17 @@ function add(i,u,w, reqLevel){
 	let workerName = listEntries[arrayPos].name;
 	let workerId = workerList[workerName].workerId;
 
+	if(typeOfDay=='weekend'){
+		workerList[workerName].daysOfWorkTotalWeekEnd++;
+	}else{		
+		workerList[workerName].daysOfWorkTotalNormal++;		
+	}
+	workerList[workerName].daysOfWork[shiftTagS].days++;
+	workerList[workerName].daysOfWorkTotal++;
 	
-
-	workerList[workerName].daysOfWork++;
 	workerList[workerName].shiftWork[i] = mounth[i][u].shift;	
-	workerList[workerName].workHours += mounth[i][u].ch;	
+	workerList[workerName].workHours += mounth[i][u].ch;
+	
 	let valueReturn = {workerId, w};
 	return (valueReturn);
 }

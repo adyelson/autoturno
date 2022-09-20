@@ -5,12 +5,14 @@ let mounth = [];
 let convertedShift = [];
 let headerConvertedShift = [];
 let workers = [];
+let headerShiftNormal = [];
 let shiftList = new Vue({
 	el:'#shiftList', 
 	data:{
 		workers: workers, //array
 		workerList: workerList,//obj objt
-		amountDays: 0
+		amountDays: 0,
+		headerShift: headerShiftNormal
 	}
 });
 let mounthShift= [];
@@ -20,6 +22,7 @@ let workIdshiftList = new Vue({
 		shifts: convertedShift,
 		header: headerConvertedShift,
 		amountDays: 0
+		
 		
 	}
 });

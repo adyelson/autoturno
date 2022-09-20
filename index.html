@@ -46,7 +46,8 @@
             <div class="escalarButton">Escalar!</div>
            
             
-            <input id="qtdDiasMes" type="text" class="qtdDiasMes" placeholder="qtd dias" value="30">
+            <input type="month" id="qtdDiasMes"  class="qtdDiasMes" value="2022-01" min="2022-01" >
+
             <div class="shiftList" id="shiftList"><br>
                 <button onclick="exportDataCsv()" class="exportExcel">Exportar csv</button>
                 <table class="horizontalShift" v-if="amountDays>0">
@@ -57,13 +58,13 @@
                         <th>Leg</th>
                         <th>Nome</th>
                         <th>Hab.</th>
-                        <th v-for="i in amountDays" v-html="i"></th>
+                        <th v-for="(i,index) in headerShift" v-html="index+1"  v-bind:class="i"></th>
                     </tr>
                 </thead>
                 <tbody>
                   
                     <tr  v-for="info in workers" :key="workerList[info].workerId">
-                        <th v-html="workerList[info].daysOfWork"></th>
+                        <th v-html="workerList[info].daysOfWorkTotal"></th>
                         <th v-html="workerList[info].workHours"></th>
                         <th v-html="workerList[info].workerId"></th>
                         <th v-html="workerList[info].name" ></th>
@@ -116,9 +117,27 @@
                         
                         <div class="condition sample">
                             <div class="buttonRemoveCondition"> - </div >
-                            <input class="dayStart" type="number" min="1" max="31" placeholder="Dia inicio">
-                            <input class="dayEnd" type="number" min="1" max="31" placeholder="Dia fim">
-                            <input class="signal" type="text" placeholder="Sigla">
+                            <div>
+                                <label> Início
+                                    <input class="hourStart" type="number" min="0" max="23" placeholder="Hora">
+                                    <input class="dayStart" type="number" min="1" max="31" placeholder="Dia">
+                                </label>
+                            </div>
+                            <div>
+
+                                <label> Fim
+                                    <input class="hourEnd" type="number" min="0" max="23" placeholder="Hora">
+                                    <input class="dayEnd" type="number" min="1" max="31"  placeholder="Dia">
+                                </label>
+                            </div>
+                            <div>
+                                <label>Descanso
+                                    <input class="restAfterSpecial" type="number" min="0" placeholder="Horas">
+                                </label>    
+                                <input class="signal" type="text" placeholder="Sigla">
+
+                            </div>
+                                
                         </div>
                     </div>
                 </div>
@@ -132,10 +151,11 @@
                 <input id="shiftName" type="text" placeholder="Turno">
                 <input id="shiftTag" type="text" placeholder="Abrev" >
                 <input class="date" id="startTime" type="text" placeholder="inicio" >
-                <input class="date" id="endTime" type="text" placeholder="fim" >
+                <input  id="workHours" type="text" placeholder="duração" >
+                <input  id="restAfter" type="number" placeholder="horas de folga" >
                 <input id="level" type="text" placeholder="Nível" >
                 <input id="minWorkers" type="text" placeholder="minWorkers" >
-                <input id="workHours" type="text" placeholder="hours" >
+                
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ function updateVue(){
 	shiftList.workers = workers;
 	shiftList.workerList = workerList;
 	shiftList.amountDays = mounthDays;
+	shiftList.headerShift= headerShiftNormal;
 
 	workIdshiftList.header = 0;
 	workIdshiftList.shifts = 0;

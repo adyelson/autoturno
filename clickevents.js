@@ -3,7 +3,7 @@ document.querySelector('.exportButton').addEventListener('click',()=>{
 });
 
 document.querySelector('.escalarButton').addEventListener('click',()=>{
-	includeShift();
+	setDays();
 });
 
 document.querySelector('.buttonAddWorker').addEventListener('click', ()=>{
