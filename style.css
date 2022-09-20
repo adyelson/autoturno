@@ -273,6 +273,26 @@ span{
     background-color: rgb(48, 48, 48);
 }
 
-.weekend{
-    background-color: orangered;
+.Saturday{
+    background-color: rgb(207, 0, 0);
+}
+.Sunday{
+    background-color: rgb(207, 0, 0);
+}
+.Friday{
+    background-color: rgb(238, 106, 58);
+}
+.Holiday{
+    background-color: purple;
+}
+
+.grayDias{
+    background-color: blueviolet;
+}
+.grayCH{
+    background-color: gray;
+}
+.habilitacao{
+    background-color: rgb(59, 59, 59);
+    color: white;
 }

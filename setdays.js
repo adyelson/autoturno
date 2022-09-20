@@ -1,9 +1,30 @@
 function getDaysInMonth(year, month) {
 	return new Date(year, month, 0).getDate();
   }
-function isWeekend(date = new Date()) {
-	return date.getDay() === 6 || date.getDay() === 0;
+
+function checkTypeOfDay(date = new Date()){
+
+	let holidays = [];
+	if(holidays.includes(date.getDate())){
+		return 'Holiday'
+	}else{
+
+		if(date.getDay() === 0){
+			return 'Sunday'
+		}
+		if(date.getDay() === 6){
+			return 'Saturday'
+		}
+		if(date.getDay() === 5){
+			return 'Friday'
+		}
+		if(date.getDay() !== 6 || date.getDay() !== 0 || date.getDay() !== 5){
+			return 'Normal'
+		}
+	}
+
 }
+
 function setDays(){
 	headerShiftNormal = [];
 	let dataInputMonth = (document.querySelector('.qtdDiasMes').value);
@@ -15,17 +36,8 @@ function setDays(){
 
 	
 	for (let a=0; a<mounthDays;a++){
-		today.setDate(a+1)
-
-		
-		if(isWeekend(today)){
-			typeOfDay = 'weekend';
-		}else{
-			typeOfDay = 'normal';
-		}
-		
-		
-		
+		today.setDate(a+1);
+		typeOfDay = checkTypeOfDay(today);
 		mounth[a] = includeShift(today.getDate(),typeOfDay,today.getDay())
 		
 	}

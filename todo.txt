@@ -1,17 +1,13 @@
 
 
-feriado?
+
 
 input para definir feriado
 
 input para defini sequencia e folga após
 
-ignorar dias para computo quando ferias
-
-contabilizar ch no checkbox - sgt de dia nao soma horas
-
-ferias e dispensa nao pode somar dias
+opção para escolher em quais dias se aplica determinado turno
 
 
-domingo é diferente de sabad?
+
 

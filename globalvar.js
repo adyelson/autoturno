@@ -6,13 +6,21 @@ let convertedShift = [];
 let headerConvertedShift = [];
 let workers = [];
 let headerShiftNormal = [];
+let definedShifts = [];
 let shiftList = new Vue({
 	el:'#shiftList', 
 	data:{
 		workers: workers, //array
 		workerList: workerList,//obj objt
 		amountDays: 0,
-		headerShift: headerShiftNormal
+		headerShift: headerShiftNormal,
+		definedShifts: definedShifts
+	},
+	methods:{
+		varToString: function(a){
+			return (Object.keys(a)[0]);
+		}
+			
 	}
 });
 let mounthShift= [];

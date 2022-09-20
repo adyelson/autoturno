@@ -1,7 +1,7 @@
 function updateVue(){	
 	shiftList.workers = 0;
 	shiftList.workerList = 0;
-
+	shiftList.definedShifts = definedShifts;
 
 	shiftList.workers = workers;
 	shiftList.workerList = workerList;

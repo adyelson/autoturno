@@ -15,25 +15,26 @@ function includeWorkers(){
 			let endHour = parseInt(condition.querySelector('.hourEnd').value);
 			let afterRest = parseInt(condition.querySelector('.restAfterSpecial').value);
 			let signalToPut = condition.querySelector('.signal').value;
-
-			let useHour = condition.querySelector('#countHour');
+			let CountDay = condition.querySelector('#vacation').checked;
+			let useHour = condition.querySelector('#countHour').checked;
 			let totalHourOfCondition =  0;
-				
-			if(useHour.checked){				
-				totalHourOfCondition =	sumHour(startDay+1,endDay,startHour,endHour);				
-			}
+					
+			
 
 			let restObjectData = getRestDays(endDay,endHour,afterRest);
 			let daysToRest = restObjectData.daysR;
 			let startRestHour =restObjectData.startHR;
 			let endRestHour = restObjectData.endHR;
 
-
+			let daysRatio = endDay-startDay+1;
+			
 			let daysToPut = [];
 			for(let t=startDay;t<=endDay;t++){
 				daysToPut.push(t);
 			}
-			
+			if(useHour){				
+				totalHourOfCondition =	sumHour(startDay+1,endDay,startHour,endHour)/daysRatio;								
+			}
 			let conditionToAppend = {
 				workHourPLus: totalHourOfCondition, 
 				signal: signalToPut,
@@ -43,7 +44,8 @@ function includeWorkers(){
 				lastDayOfRestHour: endRestHour,
 				afterRest:afterRest,	 
 				hourEnd: endHour,
-				hourStart: startHour
+				hourStart: startHour,
+				CountDay: CountDay
 			};
 
 			cantEnterDays.push(conditionToAppend);
@@ -71,20 +73,32 @@ function includeWorkers(){
 		dayMultiplier = mounthDays/(mounthDays-daySubtractor);
 
 		shiftModelWeek.forEach(element => {
-			daysOfWorkObject[element.shift] = {days: 0};
+			daysOfWorkObject[element.shift] = {shift:element.shift, days: 0};
+			definedShifts.push(element.shift);
 		});
 		
+		definedShifts = [...new Set(definedShifts)];
+		
 		let levelInput = item.querySelector('#level').value;
+
+		let startHour = 0;
+
+		
+
         workerList[workerName] = {
 			workerId: id,
 			name: workerName,
 			level: levelInput, 
 			shiftWork: [], 
 			dayMultiplier: dayMultiplier,
-			daysOfWork: daysOfWorkObject, 		
-			daysOfWorkTotalNormal: 0,
-			daysOfWorkTotalWeekEnd: 0,
-			daysOfWorkTotalHoliday: 0,
+			daysOfWork: daysOfWorkObject, 
+			daysOfWorkType: {
+				Normal: 0,
+				Friday: 0,
+				Saturday: 0,
+				Sunday: 0,
+				Holiday: 0
+			},
 			daysOfWorkTotal: 0, 
 			workHours: 0, 
 			especialSituation: cantEnterDays};
