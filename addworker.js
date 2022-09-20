@@ -13,7 +13,6 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	///// define level para vaga
 	for(let z=0;z<arrayObjects.length;z++){
 		let actualWork = arrayObjects[z][1];
-
 		if(actualWork.level==reqLevel){
 			let putSignal = '';
 			let cantEnter = false;
@@ -27,10 +26,8 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 					extraHourPlus = actualWork.especialSituation[s].workHourPLus;
 					countDay = actualWork.especialSituation[s].CountDay;
 				 }
-			}
-			
-			for(let a=0; a<actualWork.especialSituation.length;a++){
-				
+			}			
+			for(let a=0; a<actualWork.especialSituation.length;a++){				
 				if(actualWork.especialSituation[a].daysOfRest.includes(parseInt(i))){
 					let posCheck = actualWork.especialSituation[a].daysOfRest.length;
 					let checkValueLast = actualWork.especialSituation[a].daysOfRest[posCheck-1];
@@ -49,9 +46,7 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 				    }				
 				}			   
 				}
-		   }
-		
-		
+		   }			
 			if(mustRest==0){
 				if(!cantEnter){
 				let alreadyPut = !!actualWork.shiftWork[i];				
@@ -71,85 +66,33 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 						extraWorkPlus.daysOfWorkTotal++;
 					}
 					extraWorkPlus.workHours+=extraHourPlus;
-
-					extraWorkPlus.daysOfWorkType[typeOfDay]++;
-
-					
-					actualWork.shiftWork[i] = putSignal;					
-					
+					extraWorkPlus.daysOfWorkType[typeOfDay]++;					
+					actualWork.shiftWork[i] = putSignal;
 				}
 			}
 		}
 	}
 	}
-	/////////////////////////////////////////////////////////////
-	let listToChoose = [];
-	listEntries.reverse();
-	let usedRules = [];
-	usedRules.push('shiftType');
-	// usedRules.push('totalDays');
-	//usedRules.push('typeDays');
-	// usedRules.push('hours');
-	let arrayPos = 0;	
-		usedRules.forEach((rule)=>{
-			workArrayPos = [];
-			if(rule=='shiftType'){
-				console.log('1');
-				listEntries.forEach(element => {	
-					workArrayPos.push((element.daysOfWork[shiftTagS].days));			
-				});				
-			}
-			if(rule=='hours'){
-				listEntries.forEach(element => {	
-					workArrayPos.push((element.workHours));			
-				});
-				console.log('2');
-			}
-			if(rule=='typeDays'){
-				listEntries.forEach(element => {	
-					workArrayPos.push((element.daysOfWorkType[typeOfDay]));			
-				});
-				console.log('3');
-			}
-			if(rule=='totalDays'){
-				listEntries.forEach(element => {	
-					workArrayPos.push((element.daysOfWorkTotal)*element.dayMultiplier);			
-				});
-				console.log('4');
-			}
-			
-			let lessDays = Math.min.apply(Math, workArrayPos)	
-			arrayPos = workArrayPos.findIndex((element)=> element == lessDays);
-			
-			if(arrayPos==-1){
-				alert('Não existe funcionário suficiente que atendam as regras');
-			}
-
-			listToChoose.push(listEntries[arrayPos].name);
-		
-		})	
-		
-		console.log(listToChoose);
-		
-		let counts= [];
-		listToChoose.forEach((el)=>{
-			counts[el] = (counts[el] || 0 )+1;
+	/////////////////////////////////////////////////////////////	
+	let arrayCheck = [listEntries.reverse()];// inverter para sempre pegar do ultimo da lista de baixo pra cima			
+	let paramCheck = 4;
+	for(let o=0;o<paramCheck;o++){
+		workArrayPos=[];
+		arrayCheck[o].forEach(element=>{
+				o==0 ?	workArrayPos.push(element.daysOfWork[shiftTagS].days) :'';				
+				o==1 ?	workArrayPos.push(element.daysOfWorkType[typeOfDay]):'';			
+				o==2 ?	workArrayPos.push(element.workHours):'';				
+				o==3 ?	workArrayPos.push(element.daysOfWorkTotal*element.dayMultiplier):'';				
 		});
-		
-		let lastArrayCheckPoint = [];
-		
-		for(let m=0;m<listToChoose.length;m++){
-			lastArrayCheckPoint.push(counts[listToChoose[m]]);
-			
-		}
-		lastArrayCheckPoint.reverse();
-		let maxPoint = Math.max.apply(Math, lastArrayCheckPoint)	
-		let turnPos = lastArrayCheckPoint.findIndex((element)=> element == maxPoint);
-		console.log(listToChoose[turnPos]);
-
-////////////////////////////////////////////////////////
-	let workerName = listToChoose[turnPos];
-	let workerId = workerList[workerName].workerId;
+		arrayCheck[o+1]=makeListToCheck(arrayCheck[o],searchLessDay(workArrayPos));				
+	}			
+	if(searchLessDay(workArrayPos)[0]==undefined){
+		alert('Não é possível atender as regras de escala com a quantidade atual de funcionários.');	
+		document.querySelector('.shiftList').classList.add('hide');	
+		document.querySelector('.workIdshiftList').classList.add('hide');	
+	}
+	let workerName = arrayCheck[3][searchLessDay(workArrayPos)[0]].name;	
+	let workerId = workerList[workerName].workerId;	
 	workerList[workerName].daysOfWorkType[typeOfDay]++;
 	workerList[workerName].daysOfWork[shiftTagS].days++;
 	workerList[workerName].daysOfWorkTotal++;	
@@ -157,14 +100,12 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	workerList[workerName].workHours += mounth[i][u].ch;
 	//////------------------------------------------------------------------
 	//////------------------------------------------------------------------
-	let cont = 6-1; 
-	let sequenceRest = 60;
+	let cont = 6-1; ////////////////////////////////////////////-----------------edit  -1 fixo
+	let sequenceRest = 60;////////////////////////////////////////////-----------------edit
 	let checkSequenceOfWork = [];
-
 	for (let zw=i-cont; zw<i;zw++){ 
 		checkSequenceOfWork.push(workerList[workerName].shiftWork[zw]);		
-	}
-	
+	}	
 	let endDay = i;
 	let endHour = mounth[i][u].ch+mounth[i][u].startHour;
 	let afterRest = 0;
@@ -196,12 +137,26 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 		hourEnd: endHour,
 		hourStart: mounth[i][u].startHour
 	};
-    
-
 	workerList[workerName].especialSituation.push(conditionToAppend);
 	//////------------------------------------------------------------------
 	//////------------------------------------------------------------------
-
 	let valueReturn = {workerId, w};
 	return (valueReturn);
+}
+function makeListToCheck(entries,listLessDay){
+	let listCheck = [];
+	listLessDay.forEach(el=>{
+		listCheck.push(entries[el]);
+	})
+	return listCheck;
+}
+function searchLessDay(array){
+	let element = Math.min.apply(Math, array)
+	let indices = [];	
+	let idx = array.indexOf(element);
+	while (idx != -1) {
+	indices.push(idx);
+	idx = array.indexOf(element, idx + 1);
+	}	
+	return indices;	
 }

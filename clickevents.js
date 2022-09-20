@@ -4,6 +4,8 @@ document.querySelector('.exportButton').addEventListener('click',()=>{
 
 document.querySelector('.escalarButton').addEventListener('click',()=>{
 		setDays();
+		document.querySelector('.shiftList').classList.remove('hide');	
+		document.querySelector('.workIdshiftList').classList.remove('hide');	
 });
 
 document.querySelector('.buttonAddWorker').addEventListener('click', ()=>{
