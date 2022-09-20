@@ -9,35 +9,126 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="listaEscala">
-        <table>
-            <thead>
-            <tr class="header-table">
-                <th>dias</th>
-                <th>CH</th>
-                <th>Nome</th>
-                <th>Habilitação</th>
-                <th v-for="i in qtdDias">{{i}}</th>
-            </tr>
-        </thead>
-        <tbody>
-        
-            <tr  v-for="info in nomes">
-                <th>{{info.dias}}</th>
-                <th>{{info.cargaHoraria}}</th>
-                <th >{{info.nome}}</th>
-                <th >{{info.hab}}</th>
-                <th v-for="dia in info.turnos"><span class="negrito" v-if="dia=='SGT'">{{dia}}</span>
-                    <span class="normal" v-if="dia!='SGT'">{{dia}}</span></th>
-                
-            </tr>
-        </tbody>
-        </table>
+    <div class="mainWindow">
+        <div class="menu">
+        <div class="workerInsertAreaButton">Funcionários</div>
+        <div class="shiftInsertAreaButton">Turnos</div>
+        <div class="shiftAreaButton">Escala</div>
+        </div>
+        <div class="instructions">
+            <div>
+               <p>
+                   Bem vindo ao sistema de criação de escala automática!
+                </p> 
+                <p>
+                    Bem vindo ao sistema de criação de escala automática!
+                 </p> 
+                 <p>
+                    Bem vindo ao sistema de criação de escala automática!
+                 </p> 
 
+
+            </div>
+        </div>
+        <div class="shiftArea hide">
+            <div class="escalarButton">Escalar!</div>
+            <input id="qtdDiasMes" type="text" class="qtdDiasMes" placeholder="qtd dias">
+            <div class="shiftList" id="shiftList">
+                <table v-if="amountDays>0">
+                    <thead>
+                    <tr class="header-table">
+                        <th>dias</th>
+                        <th>CH</th>
+                        <th>Leg</th>
+                        <th>Nome</th>
+                        <th>Hab.</th>
+                        <th v-for="i in amountDays" v-html="i"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr  v-for="info in workers.data" :key="info.workerId">
+                        <th v-html="info.daysOfWork"></th>
+                        <th v-html="info.workHours"></th>
+                        <th v-html="info.workerId"></th>
+                        <th v-html="info.name" ></th>
+                        <th v-html="info.level"></th>
+                        <th v-for="shiftWork in info.shiftWork"><span class="negrito" v-if="shiftWork=='SGT'"v-html="shiftWork"></span>
+                            <span class="normal" v-if="shiftWork!='SGT'"v-html="shiftWork"></span></th>
+                        
+                    </tr>
+                </tbody>
+                </table>                
+                  </div>
+                  <br>
+                  <div class="workIdshiftList" id="workIdshiftList">
+                    <table v-if="amountDays>0">
+                        <thead>
+                        
+                            
+                            <!-- <tr v-for="w in shifts" v-html="w+parseInt(1)">
+                                <th v-for="a in w" v-html="a.workerId[1]">
+                                </th>
+                            </tr>                         -->
+                    </thead>
+                    <tbody>
+                      
+                        <!-- <tr  v-for="info in workers.data" :key="info.workerId">
+                            <th v-html="info.daysOfWork"></th>
+                            <th v-html="info.workHours"></th>
+                            <th v-html="info.workerId"></th>
+                            <th v-html="info.name" ></th>
+                            <th v-html="info.level"></th>
+                            <th v-for="shiftWork in info.shiftWork"><span class="negrito" v-if="shiftWork=='SGT'"v-html="shiftWork"></span>
+                                <span class="normal" v-if="shiftWork!='SGT'"v-html="shiftWork"></span></th>
+                            
+                        </tr> -->
+                    </tbody>
+                    </table>
+                    
+                      </div>
+    
+
+        </div>
+        <div class="workerInsertArea hide">
+            <div class="buttonAddWorker"> + </div><span class="countWorker"></span>
+            <div class="workers">
+                <div class="worker sample">
+                <div class="buttonRemove"> X </div>
+                <input id="id" type="text" placeholder="id">
+                <input id="worker" type="text" placeholder="Funcionário" >
+                <input id="level" type="text" placeholder="level" >
+                </div>
+            </div>
+        </div>
+        <div class="shiftInsertArea hide">
+            <div class="buttonAddShift"> + </div><span class="countWorker"></span>
+            <div class="shifts">
+                <div class="shift sample">
+                <div class="buttonRemove"> - </div>
+                <input id="shiftName" type="text" placeholder="Turno">
+                <input id="shiftTag" type="text" placeholder="Abrev" >
+                <input class="date" id="startTime" type="text" placeholder="inicio" >
+                <input class="date" id="endTime" type="text" placeholder="fim" >
+                <input id="level" type="text" placeholder="Nível" >
+                <input id="minWorkers" type="text" placeholder="minWorkers" >
+                <input id="workHours" type="text" placeholder="hours" >
+                </div>
+            </div>
+        </div>
+        
+          
     </div>
-    <script src="nomes.js"></script>
-    <script src="regras.js"></script>
-    <script src="funcoes.js"></script>
-    <script src="script.js"></script>
+    <script src="globalvar.js"></script>
+    <script src="clickevents.js"></script>
+    <script src="includeworker.js"></script>
+    <script src="includeshift.js"></script>
+    <script src="setdays.js"></script>
+    <script src="startdistribuition.js"></script>
+    <script src="addworker.js"></script>
+    <script src="complesquare.js"></script>
+    <script src="updatevue.js"></script>
+    <script src="navbuttons.js"></script>
+
 </body>
 </html>
