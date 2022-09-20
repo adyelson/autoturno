@@ -1,6 +1,6 @@
 
 
-let nomes = [
+let nomeswork = [
 	{nome: 'work 1', hab: 'ctr', dias: 0, cargaHoraria: 0, turnos:[]},
 	{nome: 'work 2', hab: 'ctr', dias: 0, cargaHoraria: 0, turnos:[]},
 	{nome: 'work 3', hab: 'ctr', dias: 0, cargaHoraria: 0, turnos:[]},
