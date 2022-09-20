@@ -46,8 +46,7 @@
             <div class="escalarButton">Escalar!</div>
            
             
-            <input type="month" id="qtdDiasMes"  class="qtdDiasMes" value="2022-01" min="2022-01" >
-
+            <input id="qtdDiasMes" type="text" class="qtdDiasMes" placeholder="qtd dias" value="30">
             <div class="shiftList" id="shiftList"><br>
                 <button onclick="exportDataCsv()" class="exportExcel">Exportar csv</button>
                 <table class="horizontalShift" v-if="amountDays>0">
@@ -58,13 +57,13 @@
                         <th>Leg</th>
                         <th>Nome</th>
                         <th>Hab.</th>
-                        <th v-for="(i,index) in headerShift" v-html="index+1"  v-bind:class="i"></th>
+                        <th v-for="i in amountDays" v-html="i"></th>
                     </tr>
                 </thead>
                 <tbody>
                   
                     <tr  v-for="info in workers" :key="workerList[info].workerId">
-                        <th v-html="workerList[info].daysOfWorkTotal"></th>
+                        <th v-html="workerList[info].daysOfWork"></th>
                         <th v-html="workerList[info].workHours"></th>
                         <th v-html="workerList[info].workerId"></th>
                         <th v-html="workerList[info].name" ></th>
@@ -103,102 +102,41 @@
         </div>
         <div class="workerInsertArea hide">
             <div class="buttonAddWorker"> + </div><span class="countWorker"></span>
-            <div class="workerInsertAreaMainInfo">
             <div class="workers">
                 <div class="worker sample">
                 <div class="row">
                     <div class="buttonRemove"> X </div> 
-                    <label>
-                        Id
-                        <input id="id" type="text" placeholder="id">
-                    </label>
-                    <label>
-                        Nome
-                        <input id="worker" type="text" placeholder="Funcionário" >
-                    </label>
-                    <label>
-                        Nível
-                        <input id="level" type="text" placeholder="level" >
-                    </label>
+                    <input id="id" type="text" placeholder="id">
+                    <input id="worker" type="text" placeholder="Funcionário" >
+                    <input id="level" type="text" placeholder="level" >
                     <div class="buttonPlus"> + </div>
-                    
                     
                 </div>
                     <div class="especialSituation">
                         
                         <div class="condition sample">
                             <div class="buttonRemoveCondition"> - </div >
-                               
-                                <div class="row2">
-
-                                    <label> Início:<BR>
-                                        
-                                        
-                                        Dia <input class="dayStart" type="number" min="1" max="31" placeholder="Dia">
-                                        Hora <input class="hourStart" type="number" min="0" max="23" placeholder="Hora">
-                                        
-                                    </label>
-                                    
-                                </div>
-                           
-                                <div class="row2">
-
-                                    <label> Fim:<br>
-                                        
-                                        
-                                        Dia   <input class="dayEnd" type="number" min="1" max="31"  placeholder="Dia">
-                                        Hora <input class="hourEnd" type="number" min="0" max="23" placeholder="Hora">
-                                    </label>
-                                </div>
-                           
-                                <div class="row2">
-                                        <label>Tempo de descanso após:
-                                            <input class="restAfterSpecial" type="number" min="0" placeholder="Horas">
-                                        </label> 
-
-                                </div>
-                                <div class="row2">
-                                    <label>Sigla da condição:
-
-                                    
-                                    <input class="signal" type="text" placeholder="Sigla">
-                                        </label>
-                                </div>
-                                    
-                                    <div class="row2">
-                 
-                                        
-                                        <label>
-                                            Somar Horas?
-                                            <input type="checkbox" id="countHour">
-                                        </label>
-                                    
-                                    Férias?<input type="checkbox" id="countHour">  
-                                    </div>
-                                
-                                </div>                 
-                            
-                     </div>
+                            <input class="dayStart" type="number" min="1" max="31" placeholder="Dia inicio">
+                            <input class="dayEnd" type="number" min="1" max="31" placeholder="Dia fim">
+                            <input class="signal" type="text" placeholder="Sigla">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="shiftInsertArea hide">
-            <div class="buttonAddShift"> + </div>
-            <div class="shiftInsertAreaMainInfo">
+            <div class="buttonAddShift"> + </div><span class="countWorker"></span>
             <div class="shifts">
                 <div class="shift sample">
                 <div class="buttonRemove"> - </div>
                 <input id="shiftName" type="text" placeholder="Turno">
                 <input id="shiftTag" type="text" placeholder="Abrev" >
                 <input class="date" id="startTime" type="text" placeholder="inicio" >
-                <input  id="workHours" type="text" placeholder="duração" >
-                <input  id="restAfter" type="number" placeholder="horas de folga" >
+                <input class="date" id="endTime" type="text" placeholder="fim" >
                 <input id="level" type="text" placeholder="Nível" >
                 <input id="minWorkers" type="text" placeholder="minWorkers" >
-                
+                <input id="workHours" type="text" placeholder="hours" >
                 </div>
-            </div>
             </div>
         </div>
         

@@ -3,7 +3,7 @@ document.querySelector('.exportButton').addEventListener('click',()=>{
 });
 
 document.querySelector('.escalarButton').addEventListener('click',()=>{
-	setDays();
+	includeShift();
 });
 
 document.querySelector('.buttonAddWorker').addEventListener('click', ()=>{
@@ -13,7 +13,6 @@ document.querySelector('.buttonAddWorker').addEventListener('click', ()=>{
 	workerInputLane.setAttribute('id',indexLane);	
 	workerInputLane.querySelector('#id').value = indexLane;
 	workerInputLane.classList.add('include');	
-	
 
 	workerInputLane.querySelector('.buttonRemove').addEventListener('click', ()=>{
 		workerInputLane.remove();
@@ -45,5 +44,3 @@ document.querySelector('.buttonAddShift').addEventListener('click', ()=>{
 	})
 	document.querySelector('.shifts').append(shiftInputLane);
 });
-
-

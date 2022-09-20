@@ -15,7 +15,7 @@ startAreaButton.addEventListener('click',()=>{
 	shiftArea.classList.add('hide');
 	workerInsertArea.classList.add('hide');
 	shiftInsertArea.classList.add('hide');
-			
+	
 	shiftAreaButton.classList.remove('show');
 	workerInsertAreaButton.classList.remove('show');
 	shiftInsertAreaButton.classList.remove('show');

@@ -7,10 +7,7 @@ function exportData(){
 		let levelInput = item.querySelector('#level').value;
 		let minWorkers = parseInt(item.querySelector('#minWorkers').value);
 		let workHours = parseInt(item.querySelector('#workHours').value);
-		let startHour = parseInt(item.querySelector('#startTime').value);
-		let restAfter = parseInt(item.querySelector('#restAfter').value);
-
-		let shiftData = {tittle: shiftName, shift: shiftTag, reqLevel: levelInput, workers:[], minWorkers: minWorkers, ch: workHours, startHour: startHour, restAfter: restAfter};
+		let shiftData = {tittle: shiftName, shift: shiftTag, reqLevel: levelInput, workers:[], minWorkers: minWorkers, ch: workHours};
 		exportShiftModelWeek.push(shiftData);
 	});
 
@@ -23,17 +20,13 @@ function exportData(){
 			let startDay = parseInt(condition.querySelector('.dayStart').value)-1;		
 			let endDay = parseInt(condition.querySelector('.dayEnd').value);
 			let signalToPut = condition.querySelector('.signal').value;
-			let hourStart = parseInt(condition.querySelector('.hourStart').value);		
-			let hourEnd = parseInt(condition.querySelector('.hourEnd').value);
-			let afterRest = parseInt(condition.querySelector('.restAfterSpecial').value);
-			
 			let daysToPut = [];
 			
 			for(let t=startDay;t<endDay;t++){
 				daysToPut.push(t);
 			}
 			
-			let conditionToAppend = {signal: signalToPut,days: daysToPut, afterRest:afterRest, hourEnd: hourEnd, hourStart: hourStart};
+			let conditionToAppend = {signal: signalToPut,days: daysToPut};
 
 			cantEnterDays.push(conditionToAppend);
 		});
