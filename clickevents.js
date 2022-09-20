@@ -1,5 +1,5 @@
 document.querySelector('.escalarButton').addEventListener('click',()=>{
-	includeWorkers();
+	includeShift();
 });
 
 document.querySelector('.buttonAddWorker').addEventListener('click', ()=>{

@@ -47,14 +47,15 @@
                 </thead>
                 <tbody>
                   
-                    <tr  v-for="info in workers.data" :key="info.workerId">
-                        <th v-html="info.daysOfWork"></th>
-                        <th v-html="info.workHours"></th>
-                        <th v-html="info.workerId"></th>
-                        <th v-html="info.name" ></th>
-                        <th v-html="info.level"></th>
-                        <th v-for="shiftWork in info.shiftWork"><span class="negrito" v-if="shiftWork=='SGT'"v-html="shiftWork"></span>
-                            <span class="normal" v-if="shiftWork!='SGT'"v-html="shiftWork"></span></th>
+                    <tr  v-for="info in workers" :key="workerList[info].workerId">
+                        <th v-html="workerList[info].daysOfWork"></th>
+                        <th v-html="workerList[info].workHours"></th>
+                        <th v-html="workerList[info].workerId"></th>
+                        <th v-html="workerList[info].name" ></th>
+                        <th v-html="workerList[info].level"></th>
+                        <th v-for="a in amountDays">
+                            <span class="negrito" v-if="workerList[info].shiftWork[a-1]=='SGT'"v-html="workerList[info].shiftWork[a-1]"></span>
+                            <span class="normal" v-if="workerList[info].shiftWork[a-1]!='SGT'"v-html="workerList[info].shiftWork[a-1]"></span></th>
                         
                     </tr>
                 </tbody>

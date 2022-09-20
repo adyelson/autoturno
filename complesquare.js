@@ -1,10 +1,14 @@
 function completeEmpty(){
-	workers.data = workerList;
+	
+	workers = [];
 	y = mounthDays-1;
-	for(let b=0;b<workers.data.length;b++){
-			if(!workers.data[b].shiftWork[y]){
-				workers.data[b].shiftWork[y] = '';
-		}
-	}
-	updateVue()
+
+	for (let a in workerList){
+		
+		workers.push(a);
+	};
+
+	
+
+	updateVue();
 }
