@@ -3,8 +3,9 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	let workArrayPos = [];	
 	let arrayObjects = Object.entries(workerList);
 	let listEntries = [];
-
+	let startShiftHour =mounth[i][u].startHour;
 	let extraWorkPlus = 0;
+	let extraHourPlus = 0;
 	///// define level para vaga
 	for(let z=0;z<arrayObjects.length;z++){
 		let actualWork = arrayObjects[z][1];
@@ -17,9 +18,27 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 					cantEnter = true;
 					putSignal = actualWork.especialSituation[s].signal; 
 					extraWorkPlus = workerList[actualWork.name];
+					extraHourPlus = actualWork.especialSituation[s].workHourPLus;
 				 }
 			}
-			if(!cantEnter){
+			let mustRest = false;
+			//////after shift
+
+			/////after especial situation - OK
+			for(let a=0; a<actualWork.especialSituation.length;a++){
+				if(actualWork.especialSituation[a].daysOfRest.includes(parseInt(i))){
+					if(actualWork.especialSituation[a].lastDayOfRestHour>=startShiftHour){
+						mustRest = true;
+						// console.log(actualWork.name+' tem que descansar do turno '+mounth[i][u].shift+' no dia '+ i);
+					}
+				  				   
+				}
+		   }
+
+			//befor especial situation???
+
+			if(!mustRest){
+				if(!cantEnter){
 				let alreadyPut = !!actualWork.shiftWork[i];				
 				//checar se já foi escalado no dia
 				if(!alreadyPut){
@@ -37,6 +56,7 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 						}
 						extraWorkPlus.daysOfWork[putSignal]={days: 1}
 						extraWorkPlus.daysOfWorkTotal++;
+						extraWorkPlus.workHours+=extraHourPlus;
 					}else{
 						if(typeOfDay=='weekend'){
 							extraWorkPlus.daysOfWorkTotalWeekEnd++;
@@ -51,13 +71,16 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 				}
 			}
 		}
+		}
 	}	
 	listEntries.forEach(element => {
+	
 		if(typeOfDay=='weekend'){
-			workArrayPos.push(element.daysOfWorkTotalWeekEnd*element.dayMultiplier);		
+			
+			workArrayPos.push((element.workHours+element.daysOfWorkTotalWeekEnd+(2*element.daysOfWork[shiftTagS].days))*element.dayMultiplier);		
 		}else{
 
-			workArrayPos.push(element.daysOfWorkTotalNormal*element.dayMultiplier);		
+			workArrayPos.push((element.workHours+element.daysOfWorkTotalNormal+(2*element.daysOfWork[shiftTagS].days))*element.dayMultiplier);		
 		}
 	});
 	// se listaentries vazio, pular e não preencher vaga, deixar vazio devido impossibilida e reportar isso no relatorio

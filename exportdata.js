@@ -7,7 +7,10 @@ function exportData(){
 		let levelInput = item.querySelector('#level').value;
 		let minWorkers = parseInt(item.querySelector('#minWorkers').value);
 		let workHours = parseInt(item.querySelector('#workHours').value);
-		let shiftData = {tittle: shiftName, shift: shiftTag, reqLevel: levelInput, workers:[], minWorkers: minWorkers, ch: workHours};
+		let startHour = parseInt(item.querySelector('#startTime').value);
+		let restAfter = parseInt(item.querySelector('#restAfter').value);
+
+		let shiftData = {tittle: shiftName, shift: shiftTag, reqLevel: levelInput, workers:[], minWorkers: minWorkers, ch: workHours, startHour: startHour, restAfter: restAfter};
 		exportShiftModelWeek.push(shiftData);
 	});
 

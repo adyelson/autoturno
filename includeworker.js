@@ -1,4 +1,5 @@
-///atulizar com metodo novo
+
+
 function includeWorkers(){
 	
 	workerList = []
@@ -15,12 +16,35 @@ function includeWorkers(){
 			let afterRest = parseInt(condition.querySelector('.restAfterSpecial').value);
 			let signalToPut = condition.querySelector('.signal').value;
 
+			let useHour = condition.querySelector('#countHour');
+			let totalHourOfCondition =  0;
+				
+			if(useHour.checked){				
+				totalHourOfCondition =	sumHour(startDay+1,endDay,startHour,endHour);				
+			}
+
+			let restObjectData = getRestDays(endDay,endHour,afterRest);
+			let daysToRest = restObjectData.daysR;
+			let startRestHour =restObjectData.startHR;
+			let endRestHour = restObjectData.endHR;
+
+
 			let daysToPut = [];
 			for(let t=startDay;t<endDay;t++){
 				daysToPut.push(t);
 			}
 			
-			let conditionToAppend = {signal: signalToPut,days: daysToPut,afterRest:afterRest,	 hourEnd: endHour, hourStart: startHour};
+			let conditionToAppend = {
+				workHourPLus: totalHourOfCondition, 
+				signal: signalToPut,
+				days: daysToPut,
+				daysOfRest: daysToRest,
+				firstDayOfRestHour:startRestHour, 
+				lastDayOfRestHour: endRestHour,
+				afterRest:afterRest,	 
+				hourEnd: endHour,
+				hourStart: startHour
+			};
 
 			cantEnterDays.push(conditionToAppend);
 		});
@@ -36,12 +60,15 @@ function includeWorkers(){
 		let daySubtractor = 0;
 
 		for (let cant=0; cant<cantEnterDays.length;cant++){
-			daySubtractor+= cantEnterDays[cant].days.length;
+			if(cantEnterDays[cant].workHourPLus==0){
+
+				daySubtractor+= cantEnterDays[cant].days.length;
+			}
 		}
 		/////////////
 		
 		let dayMultiplier =1;
-		//dayMultiplier = mounthDays/(mounthDays-daySubtractor);
+		dayMultiplier = mounthDays/(mounthDays-daySubtractor);
 
 		shiftModelWeek.forEach(element => {
 			daysOfWorkObject[element.shift] = {days: 0};
@@ -64,4 +91,41 @@ function includeWorkers(){
 	});
 
 	startShift();
+}
+
+function getRestDays(endDay,endHour,afterRest){
+	let startHourRest = endHour;
+	
+	let totalHourRest = afterRest;
+	let modifier = 0;
+	let modifier2 = 0;
+	if(afterRest<24){
+		totalHourRest = afterRest-24;
+		modifier=1;
+		modifier2=24;
+	}
+		let amountDaysRestInt = parseInt(totalHourRest/24)+modifier;
+		let amountDaysRestFloat = (totalHourRest/24)
+	
+	let daysRestArray = [];
+	for(let w=0;w<=amountDaysRestInt;w++){
+		daysRestArray.push(endDay+w);
+	}
+	let endHourRest = (24*(amountDaysRestFloat-amountDaysRestInt)+startHourRest)+modifier2;
+	console.log('24',amountDaysRestFloat,amountDaysRestInt,startHourRest);
+	console.log(`no dia ${daysRestArray[0]} começar a folga as ${startHourRest}`);
+	console.log(`os dias são ${daysRestArray}`);
+	console.log(`acbaa no dia ${daysRestArray.splice(-1)} as ${endHourRest}`);
+	let restaData = {startHR: startHourRest, daysR: daysRestArray, endHR:endHourRest }
+
+	return restaData;
+}
+
+function sumHour(startDay,endDay,startHour,endHour){
+	let part1 = (24-startHour)-1;
+	let part2 = 24*((endDay)-(startDay+1)); 
+	let part3 = endHour;
+	let totalHour = part1+part2+part3;
+	
+	return totalHour;
 }
