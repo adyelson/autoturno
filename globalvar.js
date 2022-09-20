@@ -23,7 +23,7 @@ if(startDate.getMonth()<10){
 let indexLane = 0;
 let indexLaneShift = 0;
 let workerList = {};
-let mounth = [];
+let month = [];
 let convertedShift = [];
 let headerConvertedShift = [];
 let workers = [];
@@ -46,7 +46,7 @@ let shiftList = new Vue({
 			
 	}
 });
-let mounthShift= [];
+let monthShift= [];
 let workIdshiftList = new Vue({
 	el:'#workIdshiftList', 
 	data:{
@@ -59,16 +59,16 @@ let workIdshiftList = new Vue({
 let priorityList = new Vue({
 	el:'#prioritylevel',
 	data:{
-		optionsa: ['Tipo do turno','Tipo do dia','Carga Horária','Fim de semana','Total de dias',""],
-		optionsb: ['Tipo do dia','Carga Horária','Fim de semana','Total de dias','Tipo do turno',""],
-		optionsc: ['Carga Horária','Fim de semana','Total de dias','Tipo do turno','Tipo do dia',""],
-		optionsd: ['Total de dias','Tipo do turno','Tipo do dia','Carga Horária','Fim de semana',""],
-		optionse: ['Fim de semana','Total de dias','Tipo do turno','Tipo do dia','Carga Horária',""],
+		optionsa: ['Tipo do turno','Tipo do dia','Carga Horária','Total de dias',""],
+		optionsb: ['Tipo do dia','Carga Horária','Total de dias','Tipo do turno',""],
+		optionsc: ['Carga Horária','Total de dias','Tipo do turno','Tipo do dia',""],
+		optionsd: ['Total de dias','Tipo do turno','Tipo do dia','Carga Horária',""],
+		//optionse: ['Fim de semana','Total de dias','Tipo do turno','Tipo do dia','Carga Horária',""],
 	}
 })
 
 let seeListOfWorkers = 0;
-let seeShiftMounth = 0;
+let seeShiftmonth = 0;
 let specialSituation = [{type: 'dayoff', legend: '', startData: '', endData: '', free: false, plus: 0},]
 let shiftModelWeek = [];
 

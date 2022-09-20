@@ -41,15 +41,15 @@ function checkTypeOfDay(date = new Date()){
 function setDays(){
 	headerShiftNormal = [];
 	let dataInputMonth = (document.querySelector('.qtdDiasMes').value);
-	mounthDays = getDaysInMonth(dataInputMonth.split('-')[0],dataInputMonth.split('-')[1]);
+	monthDays = getDaysInMonth(dataInputMonth.split('-')[0],dataInputMonth.split('-')[1]);
 
 	let today = new Date(dataInputMonth+'-'+1);
 
 	
-	for (let a=0; a<mounthDays;a++){
+	for (let a=0; a<monthDays;a++){
 		today.setDate(a+1);
 		typeOfDay = checkTypeOfDay(today);
-		mounth[a] = includeShift(today.getDate(),typeOfDay,today.getDay())
+		month[a] = includeShift(today.getDate(),typeOfDay,today.getDay())
 		headerShiftNormal.push(typeOfDay);
 	}
 		

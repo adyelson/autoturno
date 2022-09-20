@@ -83,7 +83,7 @@ function includeWorkers(){
 		/////////////
 		
 		let dayMultiplier =1;
-		dayMultiplier = mounthDays/(mounthDays-daySubtractor);
+		dayMultiplier = monthDays/(monthDays-daySubtractor);
 		definedShifts =[];
 		shiftModelWeek.forEach(element => {
 			daysOfWorkObject[element.shift] = {shift:element.shift, days: 0};

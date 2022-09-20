@@ -19,14 +19,14 @@ function convertMatrizShift(){
     //// loop para ver todos os turnos e pegar onde tem o maior valor
 
     /// usar no codigo abaixo
-    let sizeMonth = mounthShift.length;
-    let sizeShift = mounthShift[0].length;
+    let sizeMonth = monthShift.length;
+    let sizeShift = monthShift[0].length;
     let amountPerShift = [];
     let amountTotal = [];
     for(let b=0; b<sizeShift;b++){
         amountPerShift = [];
         for(let a = 0 ; a<sizeMonth;a++){
-            amountPerShift.push(mounthShift[a][b].minWorkers)
+            amountPerShift.push(monthShift[a][b].minWorkers)
         }
         amountTotal.push(Math.max.apply(Math, amountPerShift));
         
@@ -34,17 +34,17 @@ function convertMatrizShift(){
     for(let w=0;w<amountTotal.length;w++){
         
             for(let a=0;a<amountTotal[w];a++){
-                headerConvertedShift.push(mounthShift[0][w].shift);
+                headerConvertedShift.push(monthShift[0][w].shift);
                 
             }
             headerConvertedShift.push(" ");
     }
-    for(let c=0;c<mounthShift.length;c++){
+    for(let c=0;c<monthShift.length;c++){
         dayC = [];
         for(let w=0;w<amountTotal.length;w++){
             
             for(let a=0;a<amountTotal[w];a++){
-                let worker = mounthShift[c][w].workers[a];
+                let worker = monthShift[c][w].workers[a];
                 if(worker==""){
                     dayC.push(" ");
                 }else{

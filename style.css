@@ -93,7 +93,7 @@ span{
     align-items: center;
     width: 100%;
     padding: 0;
-    margin: 0;
+    margin: 10;
 }
 #qtdDiasMes{
     margin-top: 10px;
@@ -194,6 +194,29 @@ span{
     max-height: 490px;
     margin-left: -150%;
 }
+@media (max-width: 600px){
+    .shifts{
+        
+        width: 100%;
+        display: block;
+        align-items: center;
+        justify-content:center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        
+        margin-left: 0;
+    }
+    .workers{
+       
+      
+        display: block;
+        align-items: center;
+        justify-content:center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-left: 0;
+    }
+}
 .shift{
     display: flex;
     flex-direction: row;
@@ -205,7 +228,9 @@ span{
     border: 2px solid rgb(43, 38, 38);
     border-radius: 10px;
     padding: 5px;
+    
 }
+
 
 #id{
     width: 25px;

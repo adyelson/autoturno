@@ -75,7 +75,7 @@ function exportData(){
 		/////////////
 		
 		let dayMultiplier =1;
-		// let dayMultiplier = mounthDays/(mounthDays-daySubtractor);
+		// let dayMultiplier = monthDays/(monthDays-daySubtractor);
 
 
 		let levelInput = item.querySelector('#level').value;
@@ -88,10 +88,10 @@ function exportData(){
 	let option1 = document.querySelector('#opt1').value;
 	let option2 = document.querySelector('#opt2').value;
 	let option3 = document.querySelector('#opt3').value;
-	let option4 = document.querySelector('#opt4').value;
+	//let option4 = document.querySelector('#opt4').value;
 	let option0 = document.querySelector('#opt0').value;
 
-	let optionsExp = {opt0: option0, opt1:option1, opt2: option2, opt3: option3, opt4:option4}
+	let optionsExp = {opt0: option0, opt1:option1, opt2: option2, opt3: option3}; //opt4:option4}
 
 	let holidaysExp = (document.querySelector('.holidays').value).split(',');
 

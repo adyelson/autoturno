@@ -53,7 +53,7 @@ function refreshData(json){
     document.querySelector("#opt1").value =  priotiryOptionsImp.opt1;
     document.querySelector("#opt2").value =  priotiryOptionsImp.opt2;
     document.querySelector("#opt3").value =  priotiryOptionsImp.opt3;
-    document.querySelector("#opt4").value =  priotiryOptionsImp.opt4;
+    //document.querySelector("#opt4").value =  priotiryOptionsImp.opt4;
 
     for (let i = 0; i<workersData.length;i++){        
         

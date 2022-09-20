@@ -19,7 +19,7 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	let workArrayPos = [];	
 	let arrayObjects = Object.entries(workerList);
 	let listEntries = [];
-	let startShiftHour =mounth[i][u].startHour;
+	let startShiftHour =month[i][u].startHour;
 	let extraWorkPlus = 0;
 	let extraHourPlus = 0;
 	let countDay = true;
@@ -139,8 +139,8 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	}
 	workerList[workerName].daysOfWork[shiftTagS].days++;
 	workerList[workerName].daysOfWorkTotal++;	
-	workerList[workerName].shiftWork[i] = mounth[i][u].shift;	
-	workerList[workerName].workHours += mounth[i][u].ch;
+	workerList[workerName].shiftWork[i] = month[i][u].shift;	
+	workerList[workerName].workHours += month[i][u].ch;
 	//////------------------------------------------------------------------
 	//////------------------------------------------------------------------
 	let cont = document.querySelector("#maxdayssequence").value-1; ////////////////////////////////////////////-----------------edit  -1 fixo
@@ -150,11 +150,11 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 		checkSequenceOfWork.push(workerList[workerName].shiftWork[zw]);		
 	}	
 	let endDay = i;
-	let endHour = mounth[i][u].ch+mounth[i][u].startHour;
+	let endHour = month[i][u].ch+month[i][u].startHour;
 	let afterRest = 0;
 		//tem folga no meio do intervalo escolhido
 	if(checkSequenceOfWork.includes(undefined)){
-		afterRest = mounth[i][u].restAfter;
+		afterRest = month[i][u].restAfter;
 	}else{
 		afterRest = sequenceRest;
 	}
@@ -171,14 +171,14 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 
 	let conditionToAppend = {
 		workHourPLus: 0, 
-		signal: mounth[i][u].shift,
+		signal: month[i][u].shift,
 		days: daysToPut,
 		daysOfRest: daysToRest,
 		firstDayOfRestHour:startRestHour, 
 		lastDayOfRestHour: endRestHour,
 		afterRest:afterRest,	 
 		hourEnd: endHour,
-		hourStart: mounth[i][u].startHour
+		hourStart: month[i][u].startHour
 	};
 	workerList[workerName].especialSituation.push(conditionToAppend);
 	//////------------------------------------------------------------------

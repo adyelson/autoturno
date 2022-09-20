@@ -14,7 +14,7 @@
 function completeEmpty(){
 	
 	workers = [];
-	y = mounthDays-1;
+	y = monthDays-1;
 
 	for (let a in workerList){
 		

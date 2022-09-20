@@ -18,7 +18,7 @@ function updateVue(){
 
 	shiftList.workers = workers;
 	shiftList.workerList = workerList;
-	shiftList.amountDays = mounthDays;
+	shiftList.amountDays = monthDays;
 	shiftList.headerShift= headerShiftNormal;
 
 	workIdshiftList.header = 0;
@@ -26,9 +26,9 @@ function updateVue(){
 
 	workIdshiftList.header = headerConvertedShift;
 	workIdshiftList.shifts = convertedShift;
-	workIdshiftList.amountDays = mounthDays;
+	workIdshiftList.amountDays = monthDays;
 	
-	seeShiftMounth = JSON.parse(JSON.stringify(mounthShift));
+	seeShiftmonth = JSON.parse(JSON.stringify(monthShift));
 	seeListOfWorkers = JSON.parse(JSON.stringify(workers));
 	////////////////////////////////
 	
