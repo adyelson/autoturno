@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <div id="listaEscala">
+        <table>
+            <thead>
+            <tr class="header-table">
+                <th>dias</th>
+                <th>CH</th>
+                <th>Nome</th>
+                <th>Habilitação</th>
+                <th v-for="i in qtdDias">{{i}}</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr  v-for="info in nomes">
+                <th>{{info.dias}}</th>
+                <th>{{info.cargaHoraria}}</th>
+                <th >{{info.nome}}</th>
+                <th >{{info.hab}}</th>
+                <th v-for="dia in info.turnos"><span class="negrito" v-if="dia=='SGT'">{{dia}}</span>
+                    <span class="normal" v-if="dia!='SGT'">{{dia}}</span></th>
+                
+            </tr>
+        </tbody>
+        </table>
+
+    </div>
+    <script src="nomes.js"></script>
+    <script src="regras.js"></script>
+    <script src="funcoes.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
