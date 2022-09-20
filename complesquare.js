@@ -10,5 +10,5 @@ function completeEmpty(){
 
 	
 
-	updateVue();
+	convertMatrizShift();
 }

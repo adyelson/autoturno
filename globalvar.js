@@ -2,21 +2,28 @@ let indexLane = 0;
 let indexLaneShift = 0;
 let workerList = {};
 let mounth = [];
+let convertedShift = [];
+let headerConvertedShift = [];
 let workers = [];
+let headerShiftNormal = [];
 let shiftList = new Vue({
 	el:'#shiftList', 
 	data:{
-		workers: workers, 
-		workerList: workerList,
-		amountDays: 0
+		workers: workers, //array
+		workerList: workerList,//obj objt
+		amountDays: 0,
+		headerShift: headerShiftNormal
 	}
 });
 let mounthShift= [];
 let workIdshiftList = new Vue({
 	el:'#workIdshiftList', 
 	data:{
-		shifts: mounthShift, 
+		shifts: convertedShift,
+		header: headerConvertedShift,
 		amountDays: 0
+		
+		
 	}
 });
 let seeListOfWorkers = 0;

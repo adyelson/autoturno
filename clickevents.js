@@ -1,5 +1,9 @@
+document.querySelector('.exportButton').addEventListener('click',()=>{
+	exportData();
+});
+
 document.querySelector('.escalarButton').addEventListener('click',()=>{
-	includeShift();
+	setDays();
 });
 
 document.querySelector('.buttonAddWorker').addEventListener('click', ()=>{
@@ -9,10 +13,23 @@ document.querySelector('.buttonAddWorker').addEventListener('click', ()=>{
 	workerInputLane.setAttribute('id',indexLane);	
 	workerInputLane.querySelector('#id').value = indexLane;
 	workerInputLane.classList.add('include');	
+	
+
 	workerInputLane.querySelector('.buttonRemove').addEventListener('click', ()=>{
 		workerInputLane.remove();
 		indexLane--;
 		document.querySelector('.countWorker').innerHTML = indexLane;	
+	});
+
+	
+
+	workerInputLane.querySelector('.buttonPlus').addEventListener('click', ()=>{
+		let conditionInputLane = workerInputLane.querySelector('.condition').cloneNode(true);
+		conditionInputLane.classList.add('include');
+		workerInputLane.querySelector('.especialSituation').append(conditionInputLane);
+		conditionInputLane.querySelector('.buttonRemoveCondition').addEventListener('click',()=>{
+			conditionInputLane.remove();
+		})
 	});
 	document.querySelector('.workers').append(workerInputLane);
 });
@@ -28,3 +45,5 @@ document.querySelector('.buttonAddShift').addEventListener('click', ()=>{
 	})
 	document.querySelector('.shifts').append(shiftInputLane);
 });
+
+

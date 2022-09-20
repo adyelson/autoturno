@@ -10,7 +10,15 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
+
+.workerInsertAreaMainInfo, .shiftInsertAreaMainInfo{
+ justify-content: flex-start;
+ align-items: flex-start;
+ width: 100%;
+}
+
 
 table{
     text-align: center;
@@ -87,6 +95,7 @@ span{
 .buttonAddWorker:hover, .buttonAddShift:hover{
     background-color: rgb(60, 146, 60);
 }
+
 .buttonAddWorker, .buttonAddShift{
     border-radius: 50%;
     color: white;
@@ -102,26 +111,39 @@ span{
     cursor: pointer;
     box-shadow: 2px 2px 1px black;
 }
-.buttonRemove:hover{
+
+
+.buttonRemove:hover, .buttonRemoveCondition:hover{
     background-color: rgb(255, 118, 118);
 }
-.buttonRemove{
+.buttonRemove, .buttonPlus, .buttonRemoveCondition{
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 15%;
     color: white;
     font-weight: bold;
     font-size: 18px;
-    background-color: rgb(255, 0, 0);
-    height: 100%;
+    
+    height: 80%;
     width: 27px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 10px;
+   
+    
     cursor: pointer;
-    box-shadow: 2px 2px 1px black;
+   
 }
-.workers{
+.buttonRemove, .buttonRemoveCondition{
+    background-color: rgb(255, 0, 0);
+    margin-right: 5px;
+}
+.buttonPlus{
+    background-color: rgb(15, 0, 151);
+    margin-left: 5px;
+}
+
+
+.workers, .shifts{
     align-self: flex-start;
     width: 100%;
     display: flex;
@@ -130,28 +152,23 @@ span{
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 490px;
-    margin-left: -150%;
+    
 }
 .worker{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
+    width: 320px;
     margin-top: 8px;
-    height: 24px;
+    margin-left: 10px;
+    min-height: 24px;
+    padding: 5px;
+    border: 2px solid rgb(43, 38, 38);
+    border-radius: 10px;
 }
 
-.shifts{
-    align-self: flex-start;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content:flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-height: 490px;
-    margin-left: -150%;
-}
+
 .shift{
     display: flex;
     flex-direction: row;
@@ -160,7 +177,10 @@ span{
     flex-wrap: wrap;
     width: 300px;
     margin-top: 8px;
-    border: 2px solid black;
+    border: 2px solid rgb(43, 38, 38);
+    border-radius: 10px;
+    padding: 5px;
+    margin-left: 10px;
 }
 
 #id{
@@ -185,15 +205,44 @@ span{
 
 }
 
-.shift{
-    margin-top: 10px;
-    display: block;
+
+.row{
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+.row2{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    
    
+    
+}
+.condition{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    
+    flex-wrap: wrap;
+    border-top: 1px dashed black;
+    padding-top: 5px;
+    width: 100%;
+    
+}
+
+
+.condition input{
+    width: 60px;
+    margin-right: 5px;
 }
 
 .sample{
     display: none;
 }
+
 
 .include{
     display: flex;
@@ -213,7 +262,7 @@ span{
     height: 50px;
 }
 
-.shiftAreaButton, .workerInsertAreaButton, .shiftInsertAreaButton, .escalarButton{
+.startAreaButton, .shiftAreaButton, .workerInsertAreaButton, .shiftInsertAreaButton, .escalarButton{
     color: #fafafa;
     font-weight: bolder;
     display: flex;
@@ -229,7 +278,8 @@ span{
     cursor: pointer;
 }
 
-.shiftAreaButton:hover, .workerInsertAreaButton:hover, .shiftInsertAreaButton:hover, .escalarButton:hover{
+
+.buttonPlus:hover, .startAreaButton:hover, .shiftAreaButton:hover, .workerInsertAreaButton:hover, .shiftInsertAreaButton:hover, .escalarButton:hover{
     background-color: rgb(93, 93, 190);
 }
 
@@ -237,3 +287,6 @@ span{
     background-color: rgb(48, 48, 48);
 }
 
+.weekend{
+    background-color: orangered;
+}
