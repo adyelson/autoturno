@@ -22,5 +22,6 @@ function startShift(){
         }
         mounthShift.push(actualDay);
     }    
+    
     completeEmpty();
 }

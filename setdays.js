@@ -33,6 +33,6 @@ function setDays(){
 	for(let z=0; z<mounth.length;z++){
 		headerShiftNormal.push(mounth[z][0].typeOfDay);
 	}
-
+	
 	includeWorkers();
 }

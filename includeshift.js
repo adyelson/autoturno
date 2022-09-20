@@ -12,5 +12,7 @@ function includeShift(currentDay, typeOfDay, weekDay){
 		let shiftData = {day: currentDay, weekDay:weekDay, typeOfDay: typeOfDay, tittle: shiftName, shift: shiftTag, reqLevel: levelInput, workers:[], minWorkers: minWorkers, ch: workHours, startHour: startHour, restAfter: restAfter};
 		shiftModelWeek.push(shiftData);
 	});
+
+	
 	return(shiftModelWeek);
 }

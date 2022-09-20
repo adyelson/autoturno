@@ -108,8 +108,8 @@
                 <div class="row">
                     <div class="buttonRemove"> X </div> 
                     <input id="id" type="text" placeholder="id">
-                    <input id="worker" type="text" placeholder="Funcionário" >
-                    <input id="level" type="text" placeholder="level" >
+                    <input id="worker" type="text" placeholder="Nome" >
+                    <input id="level" type="text" placeholder="Hab" >
                     <div class="buttonPlus"> + </div>
                     
                 </div>
@@ -135,7 +135,7 @@
                                 <label>Descanso
                                     <input class="restAfterSpecial" type="number" min="0" placeholder="Horas">
                                 </label> 
-                              Fér.<input type="checkbox" id="countHour">  
+                              <label style="display:flex;">Fér.<input style="margin-left:0" type="checkbox" id="countHour"> </label>
                                 
                             </div>
                                 <div>
@@ -160,13 +160,20 @@
             <div class="shifts">
                 <div class="shift sample">
                 <div class="buttonRemove"> - </div>
-                <input id="shiftName" type="text" placeholder="Turno">
-                <input id="shiftTag" type="text" placeholder="Abrev" >
-                <input class="date" id="startTime" type="text" placeholder="inicio" >
-                <input  id="workHours" type="text" placeholder="duração" >
-                <input  id="restAfter" type="number" placeholder="horas de folga" >
-                <input id="level" type="text" placeholder="Nível" >
-                <input id="minWorkers" type="text" placeholder="minWorkers" >
+                <label>Turno
+                <input id="shiftName" type="text" ></label>
+                <label>Legenda
+                <input id="shiftTag" type="text"  ></label>
+                <label>Hora de Início
+                <input class="date" id="startTime" type="text"  ></label>
+                <label>Duração
+                <input  id="workHours" type="text" ></label>
+                <label>Hrs de folga após
+                <input  id="restAfter" type="number" ></label>
+                <label>Habilitação
+                <input id="level" type="text"  ></label>
+                <label>Mínimo de trabalhador
+                <input id="minWorkers" type="text" ></label>
                 
                 </div>
             </div>

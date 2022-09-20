@@ -31,3 +31,6 @@ let seeShiftMounth = 0;
 let specialSituation = [{type: 'dayoff', legend: '', startData: '', endData: '', free: false, plus: 0},]
 let shiftModelWeek = [];
 
+
+
+

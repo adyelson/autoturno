@@ -10,8 +10,8 @@ function includeWorkers(){
 	
 		item.querySelectorAll(".condition.include").forEach((condition)=>{
 			let startDay = parseInt(condition.querySelector('.dayStart').value)-1;		
-			let endDay = parseInt(condition.querySelector('.dayEnd').value);
-			let startHour = parseInt(condition.querySelector('.hourStart').value)-1;		
+			let endDay = parseInt(condition.querySelector('.dayEnd').value)-1;
+			let startHour = parseInt(condition.querySelector('.hourStart').value);		
 			let endHour = parseInt(condition.querySelector('.hourEnd').value);
 			let afterRest = parseInt(condition.querySelector('.restAfterSpecial').value);
 			let signalToPut = condition.querySelector('.signal').value;
@@ -30,7 +30,7 @@ function includeWorkers(){
 
 
 			let daysToPut = [];
-			for(let t=startDay;t<endDay;t++){
+			for(let t=startDay;t<=endDay;t++){
 				daysToPut.push(t);
 			}
 			
@@ -94,36 +94,42 @@ function includeWorkers(){
 }
 
 function getRestDays(endDay,endHour,afterRest){
-	let startHourRest = endHour;
 	
-	let totalHourRest = afterRest;
-	let modifier = 0;
-	let modifier2 = 0;
-	if(afterRest<24){
-		totalHourRest = afterRest-24;
-		modifier=1;
-		modifier2=24;
+	let resto1 = 0;
+	if(afterRest+endHour>=24){
+		resto1 = afterRest-(24-endHour);		
+	}else{
+		resto1 = afterRest+endHour;
 	}
-		let amountDaysRestInt = parseInt(totalHourRest/24)+modifier;
-		let amountDaysRestFloat = (totalHourRest/24)
 	
-	let daysRestArray = [];
-	for(let w=0;w<=amountDaysRestInt;w++){
-		daysRestArray.push(endDay+w);
+	let qtdDias = [];
+	let diasInteiros = parseInt(resto1/24);	
+	let diasFloat = resto1/24;
+	let resto2 = diasFloat-diasInteiros;
+	
+	if(afterRest+endHour>=24){
+		 diasInteiros++;
 	}
-	let endHourRest = (24*(amountDaysRestFloat-amountDaysRestInt)+startHourRest)+modifier2;
-	console.log('24',amountDaysRestFloat,amountDaysRestInt,startHourRest);
-	console.log(`no dia ${daysRestArray[0]} começar a folga as ${startHourRest}`);
-	console.log(`os dias são ${daysRestArray}`);
-	console.log(`acbaa no dia ${daysRestArray.splice(-1)} as ${endHourRest}`);
-	let restaData = {startHR: startHourRest, daysR: daysRestArray, endHR:endHourRest }
+
+	for(let w=0;w<=diasInteiros;w++){
+		qtdDias.push(endDay+w);
+	}
+	
+	let horaInicio = endHour;
+	let horaFim = resto2*24;
+	
+	// console.log(`no dia ${qtdDias[0]} começar a folga as ${horaInicio}`);
+	// console.log(`os dias são ${qtdDias}`);
+	// console.log(`acaba ${qtdDias[qtdDias.length-1]} as ${horaFim}`);
+	let restaData = {startHR: horaInicio, daysR: qtdDias, endHR:horaFim }
 
 	return restaData;
+	
 }
 
 function sumHour(startDay,endDay,startHour,endHour){
-	let part1 = (24-startHour)-1;
-	let part2 = 24*((endDay)-(startDay+1)); 
+	let part1 = (24-startHour);
+	let part2 = 24*((endDay)-(startDay)); 
 	let part3 = endHour;
 	let totalHour = part1+part2+part3;
 	
