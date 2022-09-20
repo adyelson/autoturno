@@ -3,25 +3,44 @@ function convertMatrizShift(){
     let dayC = [];
     headerConvertedShift= [];
 
-    /// cabecalho turnos
-    mounthShift[0].forEach(el=>{
-            for(let a=0;a<el.minWorkers;a++){
-                headerConvertedShift.push(el.shift);
+    //// loop para ver todos os turnos e pegar onde tem o maior valor
+
+    /// usar no codigo abaixo
+    let sizeMonth = mounthShift.length;
+    let sizeShift = mounthShift[0].length;
+    let amountPerShift = [];
+    let amountTotal = [];
+    for(let b=0; b<sizeShift;b++){
+        amountPerShift = [];
+        for(let a = 0 ; a<sizeMonth;a++){
+            amountPerShift.push(mounthShift[a][b].minWorkers)
+        }
+        amountTotal.push(Math.max.apply(Math, amountPerShift));
+        
+    }
+    for(let w=0;w<amountTotal.length;w++){
+        
+            for(let a=0;a<amountTotal[w];a++){
+                headerConvertedShift.push(mounthShift[0][w].shift);
+                
             }
             headerConvertedShift.push(" ");
-        
-        })
-    
-
-    for(w=0;w<mounthShift.length;w++){
-        dayC = []
-        mounthShift[w].forEach(shift=>{
-           // for(let a=0;a<el.minWorkers;a++){ para permitir vaga vazia
-            (shift.workers).forEach(worker =>{
-                dayC.push(worker);
-            })          
-            dayC.push("  ");
-        })
+    }
+    for(let c=0;c<mounthShift.length;c++){
+        dayC = [];
+        for(let w=0;w<amountTotal.length;w++){
+            
+            for(let a=0;a<amountTotal[w];a++){
+                let worker = mounthShift[c][w].workers[a];
+                if(worker==""){
+                    dayC.push(" ");
+                }else{
+                    dayC.push(worker);                    
+                }
+                
+            }
+            dayC.push(" ");
+        }
         convertedShift.push(dayC);
     }
     updateVue();

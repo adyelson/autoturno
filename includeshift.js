@@ -9,9 +9,19 @@ function includeShift(currentDay, typeOfDay, weekDay){
 		let minWorkers = parseInt(item.querySelector('#minWorkers').value);
 		let workHours = parseInt(item.querySelector('#workHours').value);
 		let restAfter = parseInt(item.querySelector('#restAfter').value);
-		let shiftData = {day: currentDay, weekDay:weekDay, typeOfDay: typeOfDay, tittle: shiftName, shift: shiftTag, reqLevel: levelInput, workers:[], minWorkers: minWorkers, ch: workHours, startHour: startHour, restAfter: restAfter};
+		let applyIn = {};
+		item.querySelectorAll(".applyin").forEach((applyDay)=>{
+			applyIn[applyDay.getAttribute('id')] = applyDay.checked;
+		})
+		if(applyIn[typeOfDay]){
+			
+		}else{
+			minWorkers = 0;
+		}
+		
+		let shiftData = {applyDays: applyIn, day: currentDay, weekDay:weekDay, typeOfDay: typeOfDay, tittle: shiftName, shift: shiftTag, reqLevel: levelInput, workers:[], minWorkers: minWorkers, ch: workHours, startHour: startHour, restAfter: restAfter};
 		shiftModelWeek.push(shiftData);
-	});
+	});	
 
 	
 	return(shiftModelWeek);

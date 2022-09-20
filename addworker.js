@@ -73,16 +73,37 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 		}
 	}
 	}
-	/////////////////////////////////////////////////////////////	
+	/////////////////////////////////////////////////////////////	VERIFICAR
 	let arrayCheck = [listEntries.reverse()];// inverter para sempre pegar do ultimo da lista de baixo pra cima			
-	let paramCheck = 4;
+	let paramCheckList = [];
+	document.querySelectorAll(".optionmaster").forEach(el=>{
+		if(el.value!=""){
+
+			paramCheckList.push(el.value);
+		}
+	})
+	let paramCheck = [...new Set(paramCheckList)].length;
+
+	let opt = {};
+	for(let b=0;b<paramCheck;b++){
+		let valuePriority = document.querySelector(`#opt${b}`).value;
+		if(opt[valuePriority]!=undefined || valuePriority==""){
+			paramCheck--;
+			opt[document.querySelector(`#opt${b+1}`).value]=document.querySelector(`#opt${b}`).getAttribute('id')[3];
+		}else{
+
+			opt[valuePriority]=document.querySelector(`#opt${b}`).getAttribute('id')[3];
+		}
+	}
+	
 	for(let o=0;o<paramCheck;o++){
 		workArrayPos=[];
 		arrayCheck[o].forEach(element=>{
-				o==0 ?	workArrayPos.push(element.daysOfWork[shiftTagS].days) :'';				
-				o==1 ?	workArrayPos.push(element.daysOfWorkType[typeOfDay]):'';			
-				o==2 ?	workArrayPos.push(element.workHours):'';				
-				o==3 ?	workArrayPos.push(element.daysOfWorkTotal*element.dayMultiplier):'';				
+				o==opt['Tipo do turno'] ?	workArrayPos.push(element.daysOfWork[shiftTagS].days) :'';				
+				o==opt['Tipo do dia'] ?		workArrayPos.push(element.daysOfWorkType[typeOfDay]):'';			
+				o==opt['Carga Horária'] ?	workArrayPos.push(element.workHours):'';				
+				o==opt['Total de dias'] ?	workArrayPos.push(element.daysOfWorkTotal*element.dayMultiplier):'';
+				o==opt['Fim de semana'] ?	workArrayPos.push(element.daysOfWeekend):'';				
 		});
 		arrayCheck[o+1]=makeListToCheck(arrayCheck[o],searchLessDay(workArrayPos));				
 	}			
@@ -91,17 +112,20 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 		document.querySelector('.shiftList').classList.add('hide');	
 		document.querySelector('.workIdshiftList').classList.add('hide');	
 	}
-	let workerName = arrayCheck[3][searchLessDay(workArrayPos)[0]].name;	
+	let workerName = arrayCheck[paramCheck-1][searchLessDay(workArrayPos)[0]].name;	
 	let workerId = workerList[workerName].workerId;	
 	workerList[workerName].daysOfWorkType[typeOfDay]++;
+	if(['Friday','Saturday','Sunday'].includes(typeOfDay)){
+		workerList[workerName].daysOfWeekend++;
+	}
 	workerList[workerName].daysOfWork[shiftTagS].days++;
 	workerList[workerName].daysOfWorkTotal++;	
 	workerList[workerName].shiftWork[i] = mounth[i][u].shift;	
 	workerList[workerName].workHours += mounth[i][u].ch;
 	//////------------------------------------------------------------------
 	//////------------------------------------------------------------------
-	let cont = 6-1; ////////////////////////////////////////////-----------------edit  -1 fixo
-	let sequenceRest = 60;////////////////////////////////////////////-----------------edit
+	let cont = document.querySelector("#maxdayssequence").value-1; ////////////////////////////////////////////-----------------edit  -1 fixo
+	let sequenceRest = document.querySelector("#restaftersequence").value;////////////////////////////////////////////-----------------edit
 	let checkSequenceOfWork = [];
 	for (let zw=i-cont; zw<i;zw++){ 
 		checkSequenceOfWork.push(workerList[workerName].shiftWork[zw]);		

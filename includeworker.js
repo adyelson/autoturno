@@ -92,6 +92,7 @@ function includeWorkers(){
 			shiftWork: [], 
 			dayMultiplier: dayMultiplier,
 			daysOfWork: daysOfWorkObject, 
+			daysOfWeekend: 0,
 			daysOfWorkType: {
 				Normal: 0,
 				Friday: 0,

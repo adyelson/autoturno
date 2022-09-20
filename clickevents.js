@@ -3,6 +3,8 @@ document.querySelector('.exportButton').addEventListener('click',()=>{
 });
 
 document.querySelector('.escalarButton').addEventListener('click',()=>{
+		holidays = (document.querySelector('.holidays').value).split(',');
+		
 		setDays();
 		document.querySelector('.shiftList').classList.remove('hide');	
 		document.querySelector('.workIdshiftList').classList.remove('hide');	

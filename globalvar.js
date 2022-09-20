@@ -7,6 +7,7 @@ let headerConvertedShift = [];
 let workers = [];
 let headerShiftNormal = [];
 let definedShifts = [];
+let holidays = [];
 let shiftList = new Vue({
 	el:'#shiftList', 
 	data:{
@@ -29,11 +30,21 @@ let workIdshiftList = new Vue({
 	data:{
 		shifts: convertedShift,
 		header: headerConvertedShift,
-		amountDays: 0
-		
+		amountDays: 0		
 		
 	}
 });
+let priorityList = new Vue({
+	el:'#prioritylevel',
+	data:{
+		optionsa: ['Tipo do turno','Tipo do dia','Carga Horária','Fim de semana','Total de dias',""],
+		optionsb: ['Tipo do dia','Carga Horária','Fim de semana','Total de dias','Tipo do turno',""],
+		optionsc: ['Carga Horária','Fim de semana','Total de dias','Tipo do turno','Tipo do dia',""],
+		optionsd: ['Total de dias','Tipo do turno','Tipo do dia','Carga Horária','Fim de semana',""],
+		optionse: ['Fim de semana','Total de dias','Tipo do turno','Tipo do dia','Carga Horária',""],
+	}
+})
+
 let seeListOfWorkers = 0;
 let seeShiftMounth = 0;
 let specialSituation = [{type: 'dayoff', legend: '', startData: '', endData: '', free: false, plus: 0},]

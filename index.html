@@ -45,8 +45,18 @@
         <div class="shiftArea hide">
             <div class="escalarButton">Escalar!</div>
            
-            
+            <div id='prioritylevel'>
+                
+
+                1: <select class="optionmaster" id='opt0'><option v-for="(a, indexa) in optionsa" v-text="optionsa[indexa]"></select>
+                2: <select class="optionmaster" id='opt1'><option v-for="(b, indexb) in optionsb" v-text="optionsb[indexb]"></select>
+                3: <select class="optionmaster" id='opt2'><option v-for="(c, indexc) in optionsc" v-text="optionsc[indexc]"></select>
+                4: <select class="optionmaster" id='opt3'><option v-for="(d, indexd) in optionsd" v-text="optionsd[indexd]"></select>
+                5: <select class="optionmaster" id='opt4'><option v-for="(e, indexe) in optionsd" v-text="optionse[indexe]"></select>
+                </div>
+
             <input type="month" id="qtdDiasMes"  class="qtdDiasMes" value="2022-01" min="2022-01" >
+            Feriados:            <input class="holidays" type="text"> (ex: 1,2,10,11)
 
             <div class="shiftList" id="shiftList"><br>
                 <button onclick="exportDataCsv()" class="exportExcel">Exportar csv</button>
@@ -63,6 +73,7 @@
                         <th class="Friday">Sex</th>
                         <th class="Saturday">Sab</th>
                         <th class="Sunday">Dom</th>
+                        <th class="grayDias">FDS</th>
                         <th class="Holiday">Fer</th>
                         <th v-for="l in definedShifts">{{l}}</th>
 
@@ -83,6 +94,7 @@
                         <th v-html="workerList[info].daysOfWorkType['Friday']"></th>
                         <th v-html="workerList[info].daysOfWorkType['Saturday']"></th>
                         <th v-html="workerList[info].daysOfWorkType['Sunday']"></th>
+                        <th v-html="workerList[info].daysOfWeekend"></th>
                         <th v-html="workerList[info].daysOfWorkType['Holiday']"></th>
                         <th v-for="l in definedShifts">{{workerList[info].daysOfWork[l].days}}</th>
                         
@@ -114,7 +126,9 @@
     
 
         </div>
-        <div class="workerInsertArea hide">
+        <div class="workerInsertArea hide"><br>
+            Max de dias seguidos (ex: 10)<input id="maxdayssequence" type="number">
+            Horas de folga obrigatória após sequencia (ex: 60) <input id="restaftersequence" type="number">
             <div class="buttonAddWorker"> + </div><span class="countWorker"></span>
             <div class="workers">
                 <div class="worker sample">
@@ -189,7 +203,14 @@
                 <input id="level" type="text"  ></label>
                 <label>Mínimo de trabalhador
                 <input id="minWorkers" type="text" ></label>
-                
+                <label>Aplicar em: <br>
+                Seg-Qui<input class="applyin" id="Normal" type="checkbox" checked >
+                Sexta-feira<input class="applyin" id="Friday" type="checkbox" checked >   <br>
+                Sábado<input class="applyin" id="Saturday" type="checkbox" checked>
+                Doming<input class="applyin" id="Sunday" type="checkbox" checked >
+                Feriado<input class="applyin" id="Holiday" type="checkbox" checked>
+            </label>
+        
                 </div>
             </div>
         </div>
