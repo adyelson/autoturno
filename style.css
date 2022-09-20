@@ -54,11 +54,20 @@ span{
     display: flex;
     justify-content: center;
 }
-.negrito{
-    background-color: green;
-    color: white;
+.especialShift{
+    background-color: rgb(37, 71, 165);
+    color: rgb(255, 255, 255);
     width: 100%;
     margin: 0;
+    font-weight: 400px;
+
+}
+.emptyshift{
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    width: 100%;
+    margin: 0;
+    font-weight: 400px;
 
 }
 

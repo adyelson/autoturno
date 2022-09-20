@@ -64,9 +64,13 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 					}
 					if(countDay){
 						extraWorkPlus.daysOfWorkTotal++;
+						extraWorkPlus.daysOfWorkType[typeOfDay]++;	//conferir necessidade		tipo de dia	
+						if(['Friday','Saturday','Sunday'].includes(typeOfDay)){
+							extraWorkPlus.daysOfWeekend++;
+						}	
 					}
 					extraWorkPlus.workHours+=extraHourPlus;
-					extraWorkPlus.daysOfWorkType[typeOfDay]++;					
+					
 					actualWork.shiftWork[i] = putSignal;
 				}
 			}
@@ -99,21 +103,23 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	for(let o=0;o<paramCheck;o++){
 		workArrayPos=[];
 		arrayCheck[o].forEach(element=>{
-				o==opt['Tipo do turno'] ?	workArrayPos.push(element.daysOfWork[shiftTagS].days) :'';				
-				o==opt['Tipo do dia'] ?		workArrayPos.push(element.daysOfWorkType[typeOfDay]):'';			
+				o==opt['Tipo do turno'] ?	workArrayPos.push(element.daysOfWork[shiftTagS].days*element.dayMultiplier) :'';				
+				o==opt['Tipo do dia'] ?		workArrayPos.push(element.daysOfWorkType[typeOfDay]*element.dayMultiplier):'';			
 				o==opt['Carga Horária'] ?	workArrayPos.push(element.workHours):'';				
 				o==opt['Total de dias'] ?	workArrayPos.push(element.daysOfWorkTotal*element.dayMultiplier):'';
-				o==opt['Fim de semana'] ?	workArrayPos.push(element.daysOfWeekend):'';				
+				o==opt['Fim de semana'] ?	workArrayPos.push(element.daysOfWeekend*element.dayMultiplier):'';				
 		});
 		arrayCheck[o+1]=makeListToCheck(arrayCheck[o],searchLessDay(workArrayPos));				
 	}			
+	let workerId = '??';
 	if(searchLessDay(workArrayPos)[0]==undefined){
-		alert('Não é possível atender as regras de escala com a quantidade atual de funcionários.');	
-		document.querySelector('.shiftList').classList.add('hide');	
-		document.querySelector('.workIdshiftList').classList.add('hide');	
-	}
+		//alert('Não é possível atender as regras de escala com a quantidade atual de funcionários.');	
+
+		// document.querySelector('.shiftList').classList.add('hide');	
+		// document.querySelector('.workIdshiftList').classList.add('hide');	
+	}else{
 	let workerName = arrayCheck[paramCheck-1][searchLessDay(workArrayPos)[0]].name;	
-	let workerId = workerList[workerName].workerId;	
+	workerId = workerList[workerName].workerId;	
 	workerList[workerName].daysOfWorkType[typeOfDay]++;
 	if(['Friday','Saturday','Sunday'].includes(typeOfDay)){
 		workerList[workerName].daysOfWeekend++;
@@ -164,6 +170,7 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	workerList[workerName].especialSituation.push(conditionToAppend);
 	//////------------------------------------------------------------------
 	//////------------------------------------------------------------------
+	}
 	let valueReturn = {workerId, w};
 	return (valueReturn);
 }

@@ -29,9 +29,20 @@ function refreshData(json){
     
     let workersData = json.woker;
     let shiftsData = json.shift;
-       
-    for (let i = 0; i<workersData.length;i++){
-        
+    let paramSequenceDaysImp = json.paramSequenceDays;
+    let holidaysImp = json.holidays;
+    let priotiryOptionsImp = json.priorityOptions;
+    document.querySelector(".holidays").value = holidaysImp;
+   
+    document.querySelector("#maxdayssequence").value =  parseInt(paramSequenceDaysImp.days);
+    document.querySelector("#restaftersequence").value =  parseInt(paramSequenceDaysImp.rest);
+    document.querySelector("#opt0").value =  priotiryOptionsImp.opt0;
+    document.querySelector("#opt1").value =  priotiryOptionsImp.opt1;
+    document.querySelector("#opt2").value =  priotiryOptionsImp.opt2;
+    document.querySelector("#opt3").value =  priotiryOptionsImp.opt3;
+    document.querySelector("#opt4").value =  priotiryOptionsImp.opt4;
+
+    for (let i = 0; i<workersData.length;i++){        
         
         let idR = workersData[i].workerId;
         let nameR = workersData[i].name;
@@ -71,14 +82,17 @@ function refreshData(json){
             let endHourR = parseInt(especialSituationR[c].hourEnd);
             let startHourR = parseInt(especialSituationR[c].hourStart);
             let afterRestR = parseInt(especialSituationR[c].afterRest);
-         
+            let countDaysR = (especialSituationR[c].sumDays);
+            let countHourR = (especialSituationR[c].sumHour);
+           
             conditionInputLane.querySelector('.dayStart').value = startDayR;
             conditionInputLane.querySelector('.dayEnd').value = endDayR;
             conditionInputLane.querySelector('.signal').value = signalR;
             conditionInputLane.querySelector('.hourEnd').value = endHourR;
             conditionInputLane.querySelector('.hourStart').value = startHourR;
             conditionInputLane.querySelector('.restAfterSpecial').value = afterRestR;
-
+            conditionInputLane.querySelector('#countHour').checked = countHourR;
+            conditionInputLane.querySelector('#countDays').checked = countDaysR;
         	conditionInputLane.classList.add('include');
 
         	workerInputLane.querySelector('.especialSituation').append(conditionInputLane);
@@ -104,6 +118,11 @@ function refreshData(json){
         let chR = shiftsData[w].ch;
         let restAfterR = shiftsData[w].restAfter;
         let startHourR = shiftsData[w].startHour;
+        let fridayR = shiftsData[w].applyFriday;
+        let holidayR = shiftsData[w].applyHoliday;
+        let normalR = shiftsData[w].applyNormal;
+        let saturdayR = shiftsData[w].applySaturday;
+        let sundayR = shiftsData[w].applySunday;
 
         let shiftInputLane = document.querySelector('.shift').cloneNode(true);
         shiftInputLane.setAttribute('id',indexLaneShift);	
@@ -114,6 +133,12 @@ function refreshData(json){
         shiftInputLane.querySelector('#workHours').value = chR;
         shiftInputLane.querySelector('#startTime').value = startHourR;
         shiftInputLane.querySelector('#restAfter').value = restAfterR;
+
+        shiftInputLane.querySelector('#Normal').checked = normalR;
+		shiftInputLane.querySelector('#Friday').checked = fridayR;
+        shiftInputLane.querySelector('#Saturday').checked = saturdayR;
+		shiftInputLane.querySelector('#Sunday').checked = sundayR;
+		shiftInputLane.querySelector('#Holiday').checked = holidayR;
 
 
         shiftInputLane.classList.add('include');	
@@ -127,4 +152,8 @@ function refreshData(json){
  
     alert('Dados inseridos com sucesso!')
     file.value = '';
+    shiftAreaButton.click();
+    document.querySelector('.escalarButton').click();
+    
+    
 }

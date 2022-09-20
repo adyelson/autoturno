@@ -2,7 +2,7 @@
 
 function includeWorkers(){
 	
-	workerList = []
+	workerList = [];
 	document.querySelectorAll(".worker.include").forEach((item)=>{
 		/////// ---------- rever errro
 		let cantEnterDays = [];
@@ -15,7 +15,7 @@ function includeWorkers(){
 			let endHour = parseInt(condition.querySelector('.hourEnd').value);
 			let afterRest = parseInt(condition.querySelector('.restAfterSpecial').value);
 			let signalToPut = condition.querySelector('.signal').value;
-			let CountDay = condition.querySelector('#vacation').checked;
+			let CountDay = condition.querySelector('#countDays').checked;
 			let useHour = condition.querySelector('#countHour').checked;
 			let totalHourOfCondition =  0;
 					
@@ -58,20 +58,21 @@ function includeWorkers(){
 		
 		/////////////
 		
-
+		
 		let daySubtractor = 0;
 
 		for (let cant=0; cant<cantEnterDays.length;cant++){
 			if(cantEnterDays[cant].workHourPLus==0){
 
-				daySubtractor+= cantEnterDays[cant].days.length;
+				daySubtractor+= (cantEnterDays[cant].days.length);
 			}
+			
 		}
 		/////////////
 		
 		let dayMultiplier =1;
 		dayMultiplier = mounthDays/(mounthDays-daySubtractor);
-
+		definedShifts =[];
 		shiftModelWeek.forEach(element => {
 			daysOfWorkObject[element.shift] = {shift:element.shift, days: 0};
 			definedShifts.push(element.shift);

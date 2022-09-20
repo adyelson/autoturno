@@ -43,5 +43,24 @@ function convertMatrizShift(){
         }
         convertedShift.push(dayC);
     }
+    
     updateVue();
+
+    myTimeout = setTimeout(refreshShift, 100);
+    function refreshShift(){
+        let listOfTittleShift = [];
+
+        for(let p = 0; p<shiftModelWeek.length;p++){
+            listOfTittleShift.push(shiftModelWeek[p].shift);
+        }
+        
+        document.querySelectorAll(".everyshift").forEach(el=>{
+            if(listOfTittleShift.includes(el.innerHTML) || el.innerHTML==''){
+                el.classList.remove('especialShift');
+            }else{
+                el.classList.add('especialShift');
+            }
+    })
+    }
+
 }

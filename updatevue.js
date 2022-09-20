@@ -17,4 +17,12 @@ function updateVue(){
 	
 	seeShiftMounth = JSON.parse(JSON.stringify(mounthShift));
 	seeListOfWorkers = JSON.parse(JSON.stringify(workers));
+	////////////////////////////////
+	
+	
+
+
+
+
+	
 }

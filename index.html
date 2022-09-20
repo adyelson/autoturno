@@ -87,8 +87,8 @@
                         <th v-html="workerList[info].name" ></th>
                         <th class="habilitacao" v-html="workerList[info].level"></th>
                         <th v-for="a in amountDays">
-                            <span class="negrito" v-if="workerList[info].shiftWork[a-1]=='SGT'"v-html="workerList[info].shiftWork[a-1]"></span>
-                            <span class="normal" v-if="workerList[info].shiftWork[a-1]!='SGT'"v-html="workerList[info].shiftWork[a-1]"></span></th>
+                            <span class="everyshift" v-html="workerList[info].shiftWork[a-1]"></span>
+                        </th>
                         <th class="grayDias" v-html="workerList[info].daysOfWorkTotal"></th>
                         <th class="grayCH" v-html="workerList[info].workHours"></th>
                         <th v-html="workerList[info].daysOfWorkType['Friday']"></th>
@@ -116,7 +116,10 @@
                       
                         <tr  v-for="(info, index) in shifts" :key="index">
                             <th >{{index+1}}</th>
-                            <th v-for="tag in info">{{tag}}</th>
+                            <th v-for="tag in info">
+                                <span class="emptyshift" v-if="tag=='??'" v-html="tag"></span>
+                                <span class="filledshift" v-if="tag!='??'" v-html="tag"></span>
+                            </th>
                             
                         </tr>       
                     </tbody>
@@ -127,8 +130,7 @@
 
         </div>
         <div class="workerInsertArea hide"><br>
-            Max de dias seguidos (ex: 10)<input id="maxdayssequence" type="number">
-            Horas de folga obrigatória após sequencia (ex: 60) <input id="restaftersequence" type="number">
+            
             <div class="buttonAddWorker"> + </div><span class="countWorker"></span>
             <div class="workers">
                 <div class="worker sample">
@@ -168,10 +170,10 @@
                                 <div>
                                     <label>
                                         Somar 
-                                       <p> Hrs<input type="checkbox" id="countHour"></p>
+                                       <p> Hrs<input type="checkbox" id="countHour" checked></p>
                                     </label>
                                     <label style="display:flex;">
-                                        Dias<input style="margin-left:0" type="checkbox" id="vacation"> </label>
+                                        Dias<input style="margin-left:0" type="checkbox" id="countDays" checked> </label>
                               
                                     
                                     
@@ -184,7 +186,9 @@
                 </div>
             </div>
         </div>
-        <div class="shiftInsertArea hide">
+        <div class="shiftInsertArea hide"><br>
+            Max de dias seguidos (ex: 10)<input id="maxdayssequence" type="number">
+            Horas de folga obrigatória após sequencia (ex: 60) <input id="restaftersequence" type="number">
             <div class="buttonAddShift"> + </div><span class="countWorker"></span>
             <div class="shifts">
                 <div class="shift sample">

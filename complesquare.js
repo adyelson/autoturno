@@ -11,4 +11,5 @@ function completeEmpty(){
 	
 
 	convertMatrizShift();
+	
 }

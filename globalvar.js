@@ -1,3 +1,12 @@
+let startDate = new Date();
+if(startDate.getMonth()<10){
+
+	document.querySelector('#qtdDiasMes').value =`${(startDate.getYear()+1900)}-0${startDate.getMonth()+1}`;
+}else{
+
+	document.querySelector('#qtdDiasMes').value =`${(startDate.getYear()+1900)}-${startDate.getMonth()+1}`;
+}
+
 let indexLane = 0;
 let indexLaneShift = 0;
 let workerList = {};
