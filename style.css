@@ -1,3 +1,18 @@
+/*
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// (c) Todos os direitos reservados. 2022
+//
+// Adyelson Felix Loureiro
+//
+// f3lixtech@f3lixtech.com 
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+ */
 *{
     box-sizing: border-box;
 }
@@ -35,7 +50,7 @@ th{
     
 }
 
-.header-table{
+.header-table,.Normal{
     background-color: black;
     color: white;
     padding: 0;
@@ -284,15 +299,19 @@ span{
 
 .Saturday{
     background-color: rgb(207, 0, 0);
+    color: white;
 }
 .Sunday{
     background-color: rgb(207, 0, 0);
+    color: white;
 }
 .Friday{
     background-color: rgb(238, 106, 58);
+    color: white;
 }
 .Holiday{
     background-color: purple;
+    color: white;
 }
 
 .grayDias{
@@ -304,4 +323,12 @@ span{
 .habilitacao{
     background-color: rgb(59, 59, 59);
     color: white;
+}
+
+.copyright{
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }

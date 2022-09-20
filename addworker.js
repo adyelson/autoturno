@@ -1,3 +1,16 @@
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// (c) Todos os direitos reservados. 2022
+//
+// Adyelson Felix Loureiro
+//
+// f3lixtech@f3lixtech.com 
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
 function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	//days - daysOfWork or hour - workHours
 	//i = dia
@@ -103,11 +116,11 @@ function add(i,u,w, reqLevel, shiftTagS,typeOfDay){
 	for(let o=0;o<paramCheck;o++){
 		workArrayPos=[];
 		arrayCheck[o].forEach(element=>{
-				o==opt['Tipo do turno'] ?	workArrayPos.push(element.daysOfWork[shiftTagS].days*element.dayMultiplier) :'';				
-				o==opt['Tipo do dia'] ?		workArrayPos.push(element.daysOfWorkType[typeOfDay]*element.dayMultiplier):'';			
+				o==opt['Tipo do turno'] ?	workArrayPos.push(element.daysOfWork[shiftTagS].days) :'';				
+				o==opt['Tipo do dia'] ?		workArrayPos.push(element.daysOfWorkType[typeOfDay]):'';			
 				o==opt['Carga Horária'] ?	workArrayPos.push(element.workHours):'';				
-				o==opt['Total de dias'] ?	workArrayPos.push(element.daysOfWorkTotal*element.dayMultiplier):'';
-				o==opt['Fim de semana'] ?	workArrayPos.push(element.daysOfWeekend*element.dayMultiplier):'';				
+				o==opt['Total de dias'] ?	workArrayPos.push(element.daysOfWorkTotal):'';
+				o==opt['Fim de semana'] ?	workArrayPos.push(element.daysOfWeekend):'';				
 		});
 		arrayCheck[o+1]=makeListToCheck(arrayCheck[o],searchLessDay(workArrayPos));				
 	}			

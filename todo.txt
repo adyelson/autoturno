@@ -1,17 +1,10 @@
 
 
+sexto check - que verifica quem tem mais folgas na sequencia anterior
+ocultar quinto check - fds
 
 
+equalizar melhor os dias
 
 
-
-
-FERIADO ESTÁ SOBREPONDO DIA ESPECIAL [ ]/SE CONTAR DIA NO DIA ESPECIAL, DEVE CONTABILIZAR NO TIPO DE DIA=deve ter pelo menos um dipo em cada turno ticado == OK
-
-input para definiR sequencia e folga após - e salvar no json [ ]
-SALVAR OPÇÕES MARCARDAS NO JSON - ( DIAS QUE VALEM O TURNO E SE CONTAR CH OU DIA NOS FUNCIONARIOS)
-SALVAR PRIORIADE PARA GERAR ESCALA no json
-
-escala por id pintar dia ---- less important
-escolher cor para quadrinho diferente (dia especial)---- less important
-
+distribuir por função + de uma função por trabalhador

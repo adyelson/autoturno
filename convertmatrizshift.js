@@ -1,3 +1,16 @@
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// (c) Todos os direitos reservados. 2022
+//
+// Adyelson Felix Loureiro
+//
+// f3lixtech@f3lixtech.com 
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
+// ------------------------------------------------------
 function convertMatrizShift(){
     convertedShift = [];
     let dayC = [];
@@ -45,8 +58,10 @@ function convertMatrizShift(){
     }
     
     updateVue();
+   
 
     myTimeout = setTimeout(refreshShift, 100);
+    let typesDaysIdShift = {Normal:[],Friday:[],Saturday:[],Sunday:[],Holiday:[]}
     function refreshShift(){
         let listOfTittleShift = [];
 
@@ -60,7 +75,44 @@ function convertMatrizShift(){
             }else{
                 el.classList.add('especialShift');
             }
-    })
+         });
+
+        document.querySelectorAll(".Normal").forEach(el=>{
+            typesDaysIdShift.Normal.push((el.innerHTML));
+        })
+        document.querySelectorAll(".Friday").forEach(el=>{
+            typesDaysIdShift.Friday.push((el.innerHTML));
+        })
+        document.querySelectorAll(".Saturday").forEach(el=>{
+            typesDaysIdShift.Saturday.push((el.innerHTML));
+        })
+        document.querySelectorAll(".Sunday").forEach(el=>{
+            typesDaysIdShift.Sunday.push((el.innerHTML));
+        })
+        document.querySelectorAll(".Holiday").forEach(el=>{
+            typesDaysIdShift.Holiday.push((el.innerHTML));
+        })
+        console.log(typesDaysIdShift);
+
+        let tableId = document.querySelector('.idShift');
+        tableId.querySelectorAll('th').forEach(el=>{
+            if((typesDaysIdShift.Normal).includes((el.innerHTML))){
+                el.classList.add('Normal');
+            }
+            if((typesDaysIdShift.Friday).includes((el.innerHTML))){
+                el.classList.add('Friday');
+            }
+            if((typesDaysIdShift.Saturday).includes((el.innerHTML))){
+                el.classList.add('Saturday');
+            }
+            if((typesDaysIdShift.Sunday).includes((el.innerHTML))){
+                el.classList.add('Sunday');
+            }
+            if((typesDaysIdShift.Holiday).includes((el.innerHTML))){
+                el.classList.add('Holiday');
+            }
+        })
+
     }
 
 }
