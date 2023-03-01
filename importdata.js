@@ -13,6 +13,7 @@
 // ------------------------------------------------------
 let form = document.querySelector('#upload');
 let file = document.querySelector('#file');
+
 form.addEventListener('submit', handleSubmit);
 
 function handleSubmit (event) {
