@@ -49,19 +49,21 @@ f3lixtech@f3lixtech.com
         </div>
         <div class="startArea">
             <div>
-                <form id="upload" style="border: 1px solid black; padding: 10px; margin-top: 30px; text-align: center;">
-                <p>
-                    <label for="file">Salve seus dados</label><br><br>
-                    <button class="exportButton">Exportar dados</button>
+                <form id="upload"
+                    style="justify-content: center; border: 1px solid black; padding: 10px; text-align: center;">
+                    <p style="border: 1px solid black; padding: 10px;  text-align: center;">
+                        <label class="labelfile" for="export">Salve seus dados</label><br>
+                        <button class="exportButton" id="export">Exportar dados</button>
 
-                </p>
-                <p style="border: 1px solid black; padding: 10px; margin-top: 30px; text-align: center;">
+                    </p>
+                    <p style="border: 1px solid black; padding: 10px ;  text-align: center;">
 
-                    <label for="file" class="arquivoescolhido" >Escolha um arquivo json</label><br><br>
-                    <input type="file" style="width:120px; word-wrap: normal;" id="file" accept=".json">
+                        <label class="labelfile" for="file">upload .json</label>
+                        <input class="exportButton" type="file" style="width:120px; word-wrap: normal;" id="file"
+                            accept=".json">
+                        <button class="labelfile" style="background-color: gray";>Importar dados</button>
 
-                    <br><br><center><button>Importar dados</button></center>
-                </p>
+                    </p>
                 </form>
 
 
@@ -71,31 +73,42 @@ f3lixtech@f3lixtech.com
             </div>
         </div>
         <div class="shiftArea hide">
-            <div class="escalarButton">Escalar!</div>
+            <div class="escalarButton" style="width:250px;">Escalar!</div>
 
-            <div id='prioritylevel'>
+            <div id='prioritylevel' style=" display: flex; flex-direction: column; justify-content: center;align-items: center;">
 
+                <div style="display:flex; justify-content: center; width:250px; margin-bottom: 10px;">
 
-                1: <select class="optionmaster" id='opt0'>
-                    <option v-for="(a, indexa) in optionsa" v-text="optionsa[indexa]">
-                </select>
-                2: <select class="optionmaster" id='opt1'>
-                    <option v-for="(b, indexb) in optionsb" v-text="optionsb[indexb]">
-                </select>
-                3: <select class="optionmaster" id='opt2'>
-                    <option v-for="(c, indexc) in optionsc" v-text="optionsc[indexc]">
-                </select>
-                4: <select class="optionmaster" id='opt3'>
-                    <option v-for="(d, indexd) in optionsd" v-text="optionsd[indexd]">
-                </select>
+                    1:<select class="optionmaster" id='opt0'>
+                        <option v-for="(a, indexa) in optionsa" v-text="optionsa[indexa]">
+                    </select>
+                </div>
+                <div style="display:flex; justify-content: center; width:250px; margin-bottom: 10px;">
+
+                    2:<select class="optionmaster" id='opt1'>
+                        <option v-for="(b, indexb) in optionsb" v-text="optionsb[indexb]">
+                        </select>
+                </div>
+                <div style="display:flex; justify-content: center; width:250px; margin-bottom: 10px;">
+
+                    3: <select class="optionmaster" id='opt2'>
+                        <option v-for="(c, indexc) in optionsc" v-text="optionsc[indexc]">
+                        </select>
+                </div>
+                <div style="display:flex; justify-content: center; width:250px; margin-bottom: 10px;">
+
+                    4:<select class="optionmaster" id='opt3'>
+                        <option v-for="(d, indexd) in optionsd" v-text="optionsd[indexd]">
+                    </select>
+                </div>
                 <!-- 5: <select class="optionmaster" id='opt4'><option v-for="(e, indexe) in optionsd" v-text="optionse[indexe]"></select> -->
             </div>
 
-            <input type="month" id="qtdDiasMes" class="qtdDiasMes" value="2022-01" min="2022-01">
+            <input type="month" id="qtdDiasMes" class="qtdDiasMes" value="2022-01" min="2022-01"><br>
             Feriados: <input class="holidays" type="text"> (ex: 1,2,10,11)
 
+            <button onclick="exportDataCsv()" class="exportExcel labelfile hide">Exportar csv</button>
             <div class="shiftList" id="shiftList"><br>
-                <button onclick="exportDataCsv()" class="exportExcel">Exportar csv</button>
                 <table class="horizontalShift" v-if="amountDays>0">
                     <thead>
                         <tr class="header-table">
@@ -203,18 +216,19 @@ f3lixtech@f3lixtech.com
                                     <input class="signal" type="text" placeholder="Sigla">
 
                                 </div>
-                                <div>
-                                    <label>
-                                        Somar
-                                        <p> Hrs<input type="checkbox" id="countHour" checked></p>
-                                    </label>
-                                    <label style="display:flex;">
-                                        Dias<input style="margin-left:0" type="checkbox" id="countDays" checked>
-                                    </label>
+                            </div>
+                            <div style="display: flex; flex-direction: row  ;">
+                                
+                                    Somar
+                                    Horas
+                                            <input type="checkbox" id="countHour" checked>
+                                
+                               
+                                    Somar Dias<input style="margin-left:0" type="checkbox" id="countDays" checked>
+                                
 
 
 
-                                </div>
                             </div>
 
 
