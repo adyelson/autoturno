@@ -20,7 +20,7 @@ function handleSubmit (event) {
 	// Stop the form from reloading the page
 	event.preventDefault();
 	// If there's no file, do nothing
-	if (!file.value.length) return;
+	if (!file.value.length) alert('Escolha um arquivo .json');
 	// Create a new FileReader() object
 	let reader = new FileReader();
 	// Setup the callback event to run when the file is read
